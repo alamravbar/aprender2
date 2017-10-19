@@ -1,0 +1,8 @@
+<html>
+<head>
+    subirarchivo
+</head>
+<body>
+<input name="archivoEnvia" type="file" />    
+</body>
+</html>
