@@ -10,6 +10,8 @@
         <label>Subir un archivo</label><br />
         <input name="archivo" type="file" id="imagen" /><br /><br />
         <input type="button" value="Subir imagen" /><br />
+        
+        <textarea name="comentario" id="comentario" cols="30" rows="10" form="formulario">Ingrese detalles del archivo...</textarea>
     </form>
     <!--div para visualizar mensajes-->
     <div class="messages"></div><br /><br />
