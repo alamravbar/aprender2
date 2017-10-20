@@ -6,7 +6,7 @@ include_once "../../lib/PDOConfig.php";
 <body>
 <?php
 //comprobamos que sea una petición ajax
-$base=new PDOConfig();eeeeeeeeeeeeeeeeeeeeeeeeeeeefvdv
+$base=new PDOConfig();
 
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') 
 {
@@ -16,18 +16,26 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     
     echo $file;
     //echo $file;
-    $query=" select* from documento where <nombre></nombre>='".$file."'";
+    $query=" select* from documento where nombre='".$file."'";
     //SELECT * FROM `archivos` WHERE imagen='a.jpg'
     $resultado=$base->query($query);
     $dato=$resultado->fetchAll(PDO::FETCH_ASSOC);
     if(count($dato)>0){
-        echo "no puede cargarse archivo, ya se encuentra cargado";
-      //$sql="INSERT INTO `documento`(`id_documento`, `nombre`, `ruta`, `extension`, `descripcion`, `id_categoria`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])"
+        echo "no se puede cargar archivo";
+    
     }else{
-        echo "no encontrado\n";
-        $rwe=basename($file,'.pdf');
-        echo $rwe;
-        //$sql="insert into documento values(null,'".$file.")"
+        echo "no encontrado\n";  //$sql="insert into archivos (id,info,imagen) VALUES(null,'".$file['$file']."','".."')"
+        $extension=explode(".",$file);
+        $nombre=basename($file);
+      $sql="insert into documento(id_documento, nombre, ruta, extension, descripcion, id_categoria) 
+      VALUES (null,'".$file."','files/".$nombre."','".$extension."','una descripcion editable 9_9',1)";
+      $res=$base->query($sql);
+      if($res){
+          echo "ingresado ";
+      }else{
+          echo "no ingresado";
+      }
+
     }
 
     //comprobamos si existe un directorio para subir el archivo
