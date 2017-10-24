@@ -14,7 +14,7 @@ class PDOConfig extends PDO {
         $this->database = 'tp_final';
         $this->user = 'root';
         $this->pass = '';
-        $this->debug = true;
+        $this->debug = false;
 
         $dns = $this->engine.':dbname='.$this->database.";host=".$this->host;
         parent::__construct( $dns, $this->user, $this->pass,
