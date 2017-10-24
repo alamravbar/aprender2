@@ -11,17 +11,22 @@
     </style>
   </head>
   <body>
-    <div class="inicio">
-      <h1>Bienvenido a Aprender</h1>
-      <p>
-      aprender.com.ar es un proyecto que pretende acercar herramientas didacticas a padres y tutores, para que estos las puedan utilizar en el proceso de aprendizaje de sus hijos.
+    <div class="row">
+      <div class="inicio col-md-9">
+        <h1>Bienvenido a Aprender</h1>
+        <p>
+        aprender.com.ar es un proyecto que pretende acercar herramientas didacticas a padres y tutores, para que estos las puedan utilizar en el proceso de aprendizaje de sus hijos.
+        </p>
+        <p>
+        Es de esperar que surjan diferentes inconvenientes durante la alfabetizacion de los chicos, las cuales son resueltas por los padres, y en muchas ocaciones estos carecen de las herramientas didacticas que puedan ayudar a sus hijos y es por esto que
+        </p>
+        <p>
+        Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor. udar a sus
       </p>
-      <p>
-      Es de esperar que surjan diferentes inconvenientes durante la alfabetizacion de los chicos, las cuales son resueltas por los padres, y en muchas ocaciones estos carecen de las herramientas didacticas que puedan ayudar a sus hijos y es por esto que
-      </p>
-      <p>
-      Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor. udar a sus
-    </p>
+      </div>
+      <div class="col-md-3">
+        <img src="img/nino_pensanto.jpg" alt="Niño aprender" width="350px"/>
+      </div>
     </div>
   </body>
 </html>
