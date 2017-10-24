@@ -1,6 +1,6 @@
 
   <div class="botones">
-    <a href="#"><img src="img/iconos/+.png" alt="Subir Documento"></a>
+    <a href="pruebas/subirArchivos/index.php"><img src="img/iconos/+.png" alt="Subir Documento"></a>
   </div>
   <div class="container">
     <p>

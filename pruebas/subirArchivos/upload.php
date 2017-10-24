@@ -8,9 +8,10 @@ include_once "../../lib/PDOConfig.php";
 //comprobamos que sea una petición ajax
 $base=new PDOConfig();
 
+
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') 
 {
-
+  
     //obtenemos el archivo a subir
     $file = $_FILES['archivo']['name'];
     print_r($_FILES);
@@ -20,12 +21,13 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     //SELECT * FROM `archivos` WHERE imagen='a.jpg'
     $resultado=$base->query($query);
     $dato=$resultado->fetchAll(PDO::FETCH_ASSOC);
-    print_r($dato); 
+    
     if(count($dato)>0){
         echo "no se puede cargar archivo";
+//print_r($_POST['comentario']);
            /*$extension=explode(".",$file);
            $x=".".$extension;
-
+print_r($_POST['comentario']);
         $nombre=basename($file,$x);
         echo "nombre:".$nombre;
     $sql="insert into documento(id_documento, nombre, ruta, extension, descripcion, id_categoria) 
@@ -33,7 +35,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
       VALUES (null,'".$file."','files/".$nombre."','".$extension."','una descripcion editable 9_9',1)";
       echo($sql);*/
           }else{
-
+$etiquetas=$_POST['etiqueta'];
         echo "no encontrado\n";  //$sql="insert into archivos (id,info,imagen) VALUES(null,'".$file['$file']."','".."')"
         $extension=explode(".",$file);
         echo($extension[1]);
@@ -43,10 +45,16 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
          echo "nombre:".$nombre."  extencion".$x;
         
       $sql="insert into documento(id_documento, nombre, ruta, extension, descripcion, id_categoria) 
-      VALUES (null,'".$nombre."','files/".$file."','".$extension[1]."','una descripcion editable 9_9',1)";
+      VALUES (null,'".$nombre."','files/".$file."','".$extension[1]."','".$_POST['comentario']."',1)";
       $res=$base->query($sql);
       if($res){
-          echo "ingresado ";
+          $sqlIngresado="select id_documento from documento where nombre='".$nombre."'";
+          $resIngreso=$base->query($sqlIngresado);
+          $datosIngreso=$resIngreso->fetchAll(PDO::FETCH_ASSOC);
+         print_r($datosIngreso);        
+          /*foreach($etiquetas as $elem){
+              
+          }*/
       }else{
           echo "no ingresado";
       }
