@@ -5,7 +5,6 @@
   <title>Aprender</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/font-awesome.css">
   <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -122,7 +121,13 @@
     $("#sumate").click(function(){
       $.get("sumate.php", function(data){
         $("#vista").html(data);
+
       });});
+      $("#inicio").click(function(){
+        $.get("inicio.php", function(data){
+          $("#vista").html(data);
+
+        });});
   </script>
 
 </body>

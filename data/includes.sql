@@ -13,3 +13,8 @@ INSERT INTO `Carga` (`dni_docente`, `id_documento`, `fecha_creacion`) VALUES
 (11111111, 2, '2017-10-18'),
 (11111111, 3, '2017-10-17'),
 (11111111, 4, '2017-10-15');
+//Agregue 24-10 esto: 
+ALTER TABLE Persona ADD fecha_nac date;
+ALTER TABLE Usuario ADD habilitado int(1);
+ALTER TABLE Docuento ADD habilitado int(1);
+INSERT INTO `Rol`(`rol`) VALUES ("alumno"), ("docente"), ("moderador"),("administrador")

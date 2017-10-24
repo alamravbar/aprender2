@@ -3,73 +3,95 @@
   <head>
     <meta charset="utf-8">
     <title>Sumate</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" &>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
   </head>
   <body>
-    <form class="form" method="post">
-      <div class="form-group">
-        <label for="nombre">Nombre</label><input type="text" class="form-control" name="nombre" value="" />
-      </div>
-      <div class="form-group">
-        <label for="apellido">Apellido</label><input type="text" class="form-control" name="apellido" value="" />
-      </div>
-      <div class="form-group">
-        <label for="dni">Dni</label><input type="text" class="form-control" name="dni" value="" />
-      </div>
-      <div class="form-group">
-        <label for="mail">Mail</label><input type="text" class="form-control" name="mail" value="" />
-      </div>
-      <div class="form-group">
-        <label for="mail">Mail</label><input type="text" class="form-control" name="mail" value="" />
-      </div>
-      <div class="form-group">
-        <label for="">Tipo de Usuario: </label>
-        <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" value="alumno" onclick="borrarCampoDocente();"checked>Alumno</label>
-        <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" value="docente" onclick="mostrarCampoDocente();">Docente</label>
-        <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" value="moderador" onclick="borrarCampoDocente();">Moderador</label>
-        <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" value="desarrollador" onclick="borrarCampoDocente();">Desarrollador</label>
-      </div>
-      <div id="campo_docente">
-        <fieldset>
-          <legend>Docente</legend>
-          <div class="form-group">
-            <label for="cuil">Cuil</label><input type="text" class="form-control" name="cuil" value="">
+    <div class="container">
+      <form class="form" method="post" id="sumate">
+        <div class="form-group">
+          <label for="nombre">Nombre</label><input type="text" class="form-control" name="nombre" value="" />
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellido</label><input type="text" class="form-control" name="apellido" value="" />
+        </div>
+        <div class="form-group">
+          <label for="dni">Dni</label><input type="text" class="form-control" name="dni" value="" />
+        </div>
+        <div class="form-group">
+          <label for="mail">Mail</label><input type="text" class="form-control" name="mail" value="" />
+        </div>
+        <div class="form-group">
+          <label for="dtp_input2" class="control-label">Fecha de Nacimiento</label>
+          <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+              <input class="form-control" type="text" value="" name="fecha_nac" readonly>
+              <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
           </div>
-          <div class="form-group">
-            <label for="">¿Tiene Certificación de Servicios?</label>
-            <label for="cert_serv" class="radio-inline"><input type="radio" name="cert_serv" value="si">Si</label>
-            <label for="cert_serv" class="radio-inline"><input type="radio" name="cert_serv" value="no" checked>No</label>
-          </div>
-
+          <input type="hidden" id="dtp_input2" value="" /><br/>
+        </div>
+        <div class="form-group">
+          <label for="">Tipo de Usuario: </label>
+          <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" value="alumno" onclick="borrarCampoDocente();"checked>Alumno</label>
+          <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" value="docente" onclick="mostrarCampoDocente();">Docente</label>
+          <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" value="moderador" onclick="borrarCampoDocente();">Moderador</label>
+          <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" value="desarrollador" onclick="borrarCampoDocente();">Desarrollador</label>
+        </div>
+        <div id="campo_docente">
           <fieldset>
-            <legend>Titulo</legend>
+            <legend>Docente</legend>
             <div class="form-group">
-              <label for="titulo_0">Titulo</label><input type="text" name="titulo_o" value="" class="form-control"/>
-              <label for="descripcion_titulo_0">Breve Descripción</label> <textarea name="descripcion_titulo_0" rows="3" class="form-control"></textarea>
-              <label for="anio_obtencion">Año de Obtensión</label>
-              <div class="input-group date" data-provide="datepicker">
-                <input type="text" class="form-control">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
+              <label for="cuil">Cuil</label><input type="text" class="form-control" name="cuil" value="">
             </div>
+            <div class="form-group">
+              <label for="">¿Tiene Certificación de Servicios?</label>
+              <label for="cert_serv" class="radio-inline"><input type="radio" name="cert_serv" value="si">Si</label>
+              <label for="cert_serv" class="radio-inline"><input type="radio" name="cert_serv" value="no" checked>No</label>
             </div>
-            <div class="form-group" id="mas_titulos"></div>
-            <a href="#" onclick="agregarCampos();" class="btn btn-default">+ Titulos</a>
-          </fieldset>
-        </fieldset>
 
-      </div>
-    </form>
+            <fieldset>
+              <legend>Titulo</legend>
+              <div class="form-group">
+                <label for="titulo_0">Titulo</label><input type="text" name="titulo_o" value="" class="form-control"/>
+                <label for="descripcion_titulo_0">Breve Descripción</label> <textarea name="descripcion_titulo_0" rows="3" class="form-control"></textarea>
+                <div class="form-group">
+                  <label for="dtp_input1" class="control-label">Año de Obtención de Titulo</label>
+                  <div class="input-group date form_datetime" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                    <input class="form-control" type="text" value=""  name="anio_obtension" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                  </div>
+                  <input type="hidden" id="dtp_input1" value="" /><br/>
+                </div>
+              </div>
+              <div class="form-group" id="mas_titulos"></div>
+              <a href="#" onclick="agregarCampos();" class="btn btn-default">+ Titulos</a>
+            </fieldset>
+          </fieldset>
+
+        </div>
+        <div class="row">
+          <div class="col-md-10">
+
+          </div>
+          <div class="col-md-2 col-sm-12">
+            <input type="reset" name="" class="btn btn-default" value="Borrar">
+            <input type="button" name="" id="enviar" class="btn btn-success" value="Enviar">
+
+          </div>
+          <br><br>
+        </div>
+      </form>
+
+    </div>
+
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.es.js" charset="UTF-8"></script>
     <script type="text/javascript">
-    $(document).ready(function() {
-      $('.datepicker').datepicker();
-    });
       var nextinput = 0;
       function agregarCampos(){
         nextinput++;
@@ -87,7 +109,42 @@
       function borrarCampoDocente(){
         $("#campo_docente").hide();
       }
-
+      $('.form_datetime').datetimepicker({
+        //language:'es',
+        //weekStart: 1,
+        //~todayBtn:  1,
+    		//~autoclose: 1,
+    		//~todayHighlight: 1,
+    		//~startView: 2,
+    		//~forceParse: 0,
+        //~showMeridian: 1
+        format: " yyyy",
+    		viewMode: "years",
+    		minViewMode: "years",
+    		startView:4,
+    		endView:4,
+    		minView:4,
+    		maxView:4,
+    		autoclose:true,
+    		startDate:"1910"
+        });
+    	$('.form_date').datetimepicker({
+        language:  'es',
+        format: " dd/mm/yyyy",
+        weekStart: 1,
+        todayBtn:  1,
+    		autoclose: 1,
+    		todayHighlight: 1,
+    		startView: 2,
+    		minView: 2,
+    		forceParse: 0
+        });
+      $("#enviar").click(function(){
+        $.post("sumate-agregar-usuario.php",$("form").serialize(),function(data){
+          alert("Data: " + data);
+        });
+      });
     </script>
+
   </body>
 </html>
