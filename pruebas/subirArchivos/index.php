@@ -61,7 +61,7 @@ foreach($datosCombo as $elem){
             </div>
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
-                <input type="button" value="Subir imagen" class="btn <btn-primary></btn-primary>"/><br />
+                <input type="button" value="Subir archivo" class="btn <btn-primary></btn-primary>"/><br />
                 </div>
 
             
