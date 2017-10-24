@@ -16,8 +16,7 @@
           <a class="navbar-brand" href="#"><img src="img/logo.png" alt="Logo aprender.com.ar"></a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li><a href="#" id="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
@@ -97,6 +96,41 @@
     </div>
   </footer>
   <!--footer start from here-->
+  <!-- Modal -->
+   <div class="modal fade" id="modalLogin" role="dialog">
+     <div class="modal-dialog">
+
+       <!-- Modal content-->
+           <div class="modal-content">
+             <div class="modal-header" style="padding:35px 50px;">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+             </div>
+             <div class="modal-body" style="padding:40px 50px;">
+               <form role="form">
+                 <div class="form-group">
+                   <label for="usrname"><span class="glyphicon glyphicon-user"></span> Usuario</label>
+                   <input type="text" class="form-control" id="username" placeholder="Enter email">
+                 </div>
+                 <div class="form-group">
+                   <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Contraseña</label>
+                   <input type="text" class="form-control" id="psw" placeholder="Enter password">
+                 </div>
+                 <div class="checkbox">
+                   <label><input type="checkbox" value="" checked>Recuerdame</label>
+                 </div>
+                   <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Ingresar</button>
+                   <button type="submit" class="btn btn-danger btn-block" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+               </form>
+             </div>
+             <div class="modal-footer">
+
+
+             </div>
+           </div>
+
+         </div>
+       </div>
 
 
   <script type="text/javascript" src="js/jquery.js"></script>
@@ -106,27 +140,45 @@
     $.get("inicio.php", function(data){
       $("#vista").html(data);
     });
+    $("#login").click(function(){
+        $("#modalLogin").modal();
+    });
   });
+
     $("#biblioteca").click(function(){
       $.get("biblioteca.php", function(data){
         $("#vista").html(data);
-        // $("#biblioteca").addClass("active");
-        // $("#asignatur").removeClass("active");
-        // $("#sugerenci").removeClass("active");
-        // $("#plataform").removeClass("active");
-        // $("#sumat").removeClass("active");
+         $("#bibliotec").addClass("active");
+         $("#asignatur").removeClass("active");
+         $("#sugerenci").removeClass("active");
+         $("#plataform").removeClass("active");
+         $("#sumat").removeClass("active");
+         $("#inicio").removeClass("active");
+
       });
 
     });
     $("#sumate").click(function(){
       $.get("sumate.php", function(data){
         $("#vista").html(data);
+        $("#sumat").addClass("active");
+        $("#asignatur").removeClass("active");
+        $("#sugerenci").removeClass("active");
+        $("#plataform").removeClass("active");
+        $("#bibliotec").removeClass("active");
+        $("#inicio").removeClass("active");
+
 
       });});
       $("#inicio").click(function(){
         $.get("inicio.php", function(data){
           $("#vista").html(data);
-
+          $("#inicio").addClass("active");
+          $("#asignatur").removeClass("active");
+          $("#sugerenci").removeClass("active");
+          $("#plataform").removeClass("active");
+          $("#bibliotec").removeClass("active");
+          $("#sumat").removeClass("active");
         });});
   </script>
 
