@@ -47,7 +47,7 @@ if(!$resultado){
       $mostrar.="<td class='botones'>";
 
       $mostrar.="<a href=biblioteca-eliminar_archivo.php?id='".$elem['id_documento']."'><img src='img/iconos/-.png' alt='Eliminar Archivo'></a>";
-      $mostrar.="<a id='modificar_archivo' href='#'><img src='img/iconos/lapiz.png' alt='Eliminar Archivo'></a>";
+      $mostrar.="<a id='modificar_archivo' href='formulariomodificar.php?id=".$elem['id_documento']."'><img src='img/iconos/lapiz.png' alt='Eliminar Archivo'></a>";
 
       $mostrar.="<a id='validar_moderador' href='#'><img src='img/iconos/validar_v.png' alt='Eliminar Archivo'></a>";
       $mostrar.="<a id='validar_docente' href='#'><img src='img/iconos/validar_g.png' alt='Eliminar Archivo'></a>";
