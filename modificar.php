@@ -6,6 +6,7 @@ if(isset($_GET)){
     $descripcion=$_GET['descripcion'];
 
     $sql = "UPDATE documento SET descripcion='".$descripcion."' WHERE id_documento=".$id." ";
+    
     $resultado=$base->query($sql);
 
     if($resultado){
