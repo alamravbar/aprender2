@@ -1,8 +1,9 @@
+<?php
+include_once 'lib/PDOConfig.php';
+?>
 
 
 <?php
-include_once 'lib/PDOConfig.php';
-
 $base = new PDOConfig();
 //id_documento 	nombre 	ruta 	extension 	descripcion 	id_categoria
 $sql=" select * from Documento";
@@ -45,8 +46,10 @@ if(!$resultado){
       $mostrar.=" <a href='".$elem['ruta']."' class='list-group-item'><img src='img/".$extension.".jpg' class='img-rounded' align='center' width='68' height='68'> ".$elem['nombre']."</a>";
       $mostrar.="</td>";
       $mostrar.="<td class='botones'>";
-      $mostrar.="<a href=biblioteca-eliminar_archivo.php?id='".$elem['id_documento']."'><img src='img/iconos/-.png' alt='Eliminar Archivo'></a>";
-      $mostrar.="<a id='modificar_archivo' href='#'><img src='img/iconos/lapiz.png' alt='Eliminar Archivo'></a>";
+
+      $mostrar.="<a href='biblioteca-eliminar_archivo.php?id=".$elem['id_documento']."'><img src='img/iconos/-.png' alt='Eliminar Archivo'></a>";
+      $mostrar.="<a id='modificar_archivo' href='formulariomodificar.php?id=".$elem['id_documento']."'><img src='img/iconos/lapiz.png' alt='Eliminar Archivo'></a>";
+
       $mostrar.="<a id='validar_moderador' href='#'><img src='img/iconos/validar_v.png' alt='Eliminar Archivo'></a>";
       $mostrar.="<a id='validar_docente' href='#'><img src='img/iconos/validar_g.png' alt='Eliminar Archivo'></a>";
       $mostrar.="</td>";

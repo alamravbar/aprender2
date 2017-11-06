@@ -37,17 +37,18 @@ $(document).ready(function(){
             contentType: false,
             processData: false,
             //mientras enviamos el archivo
-            beforeSend: function(){
-                message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
+           beforeSend: function(){
+                message = $("<span class='before'>Subiendo el archivo, por favor espere...</span>");
                 showMessage(message)        
             },
             //una vez finalizado correctamente
             success: function(data){
-                message = $("<span class='success'>La imagen ha subido correctamente.</span>");
-                showMessage(message);
-                if(isImage(fileExtension))
-                {
-                    $(".showImage").html("<img src='files/"+data+"' />");
+                
+                message = $("<span class='success'>Se ha subido correctamente el archivo</span>"+data);
+               showMessage(message);
+               if(isImage(fileExtension))
+               {
+                  $(".showImage").html("<img src='files/"+data+"'/>");
                 }
             },
             //si ha ocurrido un error
@@ -70,13 +71,21 @@ function showMessage(message){
 //para visualizarla una vez haya subido
 function isImage(extension)
 {
+    //alert(extension.toLowerCase());
     switch(extension.toLowerCase()) 
     {
         case 'pdf':
             return true;
         break;
+        case 'doc':
+            return true;
+            break;
+        case 'jpg':
+        return false;
+        break;
         default:
             return false;
         break;
+       
     }
 }

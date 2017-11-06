@@ -5,10 +5,36 @@
     Biblioteca es una colección de los libros, documentos, videos, infografías realizadas por
     nuestros docentes, no dude en usarlos!<br><br>
     </p>
+
+
+
+
     <div class="botones" style="float:right;margin-right:1%;margin-bottom:1%;">
-      <a href="#" data-toggle="modal" data-target="#masModal"><img src="img/iconos/+.png" alt="Subir Documento"></a>
+     <a href="pruebas/subirArchivos/index.php"><img src="img/iconos/+.png" alt="Subir Documento"></a>
+       <!--  <ul class="nav navbar-nav navbar-right">
+           <li><button type="button" class="openBtn"><img src="img/iconos/+.png" alt="Subir Documento"></button></li>
+
+
+        </ul>-->
     </div>
   </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="formSubirArchivo" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Modal with Dynamic Content</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+
+        </div>
+    </div>
+</div>
     <div class="show_archive">
 
     </div>
@@ -38,4 +64,12 @@
     $.get("biblioteca-vista-archivos.php", function(data){
       $(".show_archive").html(data);
     });
-    </script>
+   /*  $("#vistacarga").click(function(){
+        $("#modalLogin").modal();
+    });
+    $('.openBtn').on('click',function(){
+    $('.modal-body').load('pruebas/subirArchivos/index.php',function(){
+        $('#formSubirArchivo').modal({show:true});
+    });
+    });
+    */
