@@ -1,8 +1,9 @@
+<?php
+include_once 'lib/PDOConfig.php';
+?>
 
 
 <?php
-include_once 'lib/PDOConfig.php';
-
 $base = new PDOConfig();
 //id_documento 	nombre 	ruta 	extension 	descripcion 	id_categoria
 $sql=" select * from Documento";
