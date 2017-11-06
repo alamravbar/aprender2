@@ -23,6 +23,14 @@
         <div class="form-group">
           <label for="apellido">Apellido</label><input type="text" class="form-control" name="apellido" value="" />
         </div>
+        <div class="form-group row">
+          <div class="col-md-6">
+            <label for="nombre_usuario">Nombre Usuario</label><input type="text" class="form-control" name="nombre_usuario" value="" />
+          </div>
+          <div class="col-md-6">
+            <label for="psw">Password</label><input type="password" class="form-control" name="psw" value="" />
+          </div>
+        </div>  
         <div class="form-group">
           <label for="dni">Dni</label><input type="text" class="form-control" name="dni" value="" />
         </div>
@@ -45,6 +53,7 @@
           <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" value="moderador" onclick="borrarCampoDocente();">Moderador</label>
           <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" value="desarrollador" onclick="borrarCampoDocente();">Desarrollador</label>
         </div>
+
         <div id="campo_docente">
           <fieldset>
             <legend>Docente</legend>

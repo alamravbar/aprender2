@@ -71,7 +71,7 @@
         <div class="col-md-3 col-sm-6 paddingtop-bottom">
           <div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline" data-height="300" data-small-header="false" style="margin-bottom:15px;" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
             <div class="fb-xfbml-parse-ignore">
-              <blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote>
+              <blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/aprender.com.ar/">Facebook</a></blockquote>
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@
              <div class="modal-body" style="padding:40px 50px;">
                <form role="form">
                  <div class="form-group">
-                   <label for="usrname"><span class="glyphicon glyphicon-user"></span> Usuario</label>
+                   <label for="username"><span class="glyphicon glyphicon-user"></span> Usuario</label>
                    <input type="text" class="form-control" id="username" placeholder="Ingrese Em@il">
                  </div>
                  <div class="form-group">
@@ -154,9 +154,7 @@
          $("#plataform").removeClass("active");
          $("#sumat").removeClass("active");
          $("#inicio").removeClass("active");
-
       });
-
     });
     $("#sumate").click(function(){
       $.get("sumate.php", function(data){
@@ -167,9 +165,8 @@
         $("#plataform").removeClass("active");
         $("#bibliotec").removeClass("active");
         $("#inicio").removeClass("active");
-
-
       });});
+
       $("#inicio").click(function(){
         $.get("inicio.php", function(data){
           $("#vista").html(data);
