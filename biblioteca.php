@@ -4,18 +4,25 @@
     <p class="intros">
     Biblioteca es una colección de los libros, documentos, videos, infografías realizadas por
     nuestros docentes, no dude en usarlos!<br><br>
+    
     </p>
 
 
 
 
     <div class="botones" style="float:right;margin-right:1%;margin-bottom:1%;">
-     <a href="pruebas/subirArchivos/index.php"><img src="img/iconos/+.png" alt="Subir Documento"></a>
-       <!--  <ul class="nav navbar-nav navbar-right">
+   <!--   <a href="pruebas/subirArchivos/index.php"><img src="img/iconos/+.png" alt="Subir Documento"></a>
+       --> <ul class="nav navbar-nav navbar-right">
            <li><button type="button" class="openBtn"><img src="img/iconos/+.png" alt="Subir Documento"></button></li>
+<<<<<<< HEAD
 
 
         </ul>-->
+=======
+          
+          
+        </ul>
+>>>>>>> ef71e8b21e4741151dd3988e35da8b6350ac37fb
     </div>
   </div>
 
@@ -64,12 +71,20 @@
     $.get("biblioteca-vista-archivos.php", function(data){
       $(".show_archive").html(data);
     });
-   /*  $("#vistacarga").click(function(){
+    $("#vistacarga").click(function(){
         $("#modalLogin").modal();
     });
     $('.openBtn').on('click',function(){
-    $('.modal-body').load('pruebas/subirArchivos/index.php',function(){
+    $('.modal-body').load('pruebas/subirArchivos/index2.php',function(){
         $('#formSubirArchivo').modal({show:true});
     });
     });
+<<<<<<< HEAD
     */
+=======
+    
+
+   
+
+
+>>>>>>> ef71e8b21e4741151dd3988e35da8b6350ac37fb
