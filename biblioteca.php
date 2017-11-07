@@ -4,7 +4,7 @@
     <p class="intros">
     Biblioteca es una colección de los libros, documentos, videos, infografías realizadas por
     nuestros docentes, no dude en usarlos!<br><br>
-    
+
     </p>
 
 
@@ -14,15 +14,8 @@
    <!--   <a href="pruebas/subirArchivos/index.php"><img src="img/iconos/+.png" alt="Subir Documento"></a>
        --> <ul class="nav navbar-nav navbar-right">
            <li><button type="button" class="openBtn"><img src="img/iconos/+.png" alt="Subir Documento"></button></li>
-<<<<<<< HEAD
 
-
-        </ul>-->
-=======
-          
-          
         </ul>
->>>>>>> ef71e8b21e4741151dd3988e35da8b6350ac37fb
     </div>
   </div>
 
@@ -79,12 +72,3 @@
         $('#formSubirArchivo').modal({show:true});
     });
     });
-<<<<<<< HEAD
-    */
-=======
-    
-
-   
-
-
->>>>>>> ef71e8b21e4741151dd3988e35da8b6350ac37fb

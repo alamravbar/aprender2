@@ -27,10 +27,11 @@ create table Categoria(
 );
 
 create table Persona(
-  dni_persona int(8) NOT NULL,
+  id_persona int(8) NOT NULL AUTO_INCREMENT,
   nombre varchar(50),
   apellido varchar(50),
-  PRIMARY KEY (dni_persona)
+  fecha_nac date,
+  PRIMARY KEY (id_persona)
 );
 
 create table Usuario(
@@ -38,24 +39,25 @@ create table Usuario(
   mail varchar(50) NOT NULL,
   nombre varchar(50),
   psw varchar(50),
+  habilitado int(1),
   id_rol int(20) NOT NULL,
-  dni_persona int(8) NOT NULL,
+  id_persona int(8) NOT NULL,
   PRIMARY KEY (id_usuario),
   FOREIGN KEY (id_rol) REFERENCES Rol(id_rol),
-  FOREIGN KEY (dni_persona) REFERENCES Persona(dni_persona)
+  FOREIGN KEY (id_persona) REFERENCES Persona(id_persona)
 );
 create table Docente(
-  dni_persona int(8) NOT NULL,
+  id_persona int(8) NOT NULL,
   cuil int(11),
   habilitado int(1) NOT NULL,
   cert_serv int(1) NOT NULL,
-  PRIMARY KEY (dni_persona),
-  FOREIGN KEY (dni_persona) REFERENCES Persona(dni_persona)
+  PRIMARY KEY (id_persona),
+  FOREIGN KEY (id_persona) REFERENCES Persona(id_persona)
 );
 create table Alumno(
-  dni_persona int(8) NOT NULL,
-  PRIMARY KEY (dni_persona),
-  FOREIGN KEY (dni_persona) REFERENCES Persona(dni_persona)
+  id_persona int(8) NOT NULL,
+  PRIMARY KEY (id_persona),
+  FOREIGN KEY (id_persona) REFERENCES Persona(id_persona)
 );
 create table Asignatura(
   id_asignatura int(20) NOT NULL AUTO_INCREMENT,
@@ -80,6 +82,7 @@ create table Documento(
   ruta varchar(30),
   extension varchar(30),
   descripcion varchar(500),
+  habilitado int(1),
   id_categoria int(20) NOT NULL,
   PRIMARY KEY (id_documento),
   FOREIGN KEY (id_categoria) REFERENCES Categoria(id_categoria)
@@ -91,7 +94,7 @@ create table Obtuvo(
   anio_obtension int(4) NOT NULL,
   PRIMARY KEY (id_titulo,dni_docente),
   FOREIGN KEY (id_titulo) REFERENCES Titulo(id_titulo),
-  FOREIGN KEY (dni_docente) REFERENCES Docente(dni_persona)
+  FOREIGN KEY (dni_docente) REFERENCES Docente(id_persona)
 );
 create table Participa(
   dni_alumno int(8) NOT NULL,
@@ -99,7 +102,7 @@ create table Participa(
   f_inicio date,
   f_fin date,
   PRIMARY KEY (dni_alumno, id_curso),
-  FOREIGN KEY (dni_alumno) REFERENCES Alumno(dni_persona),
+  FOREIGN KEY (dni_alumno) REFERENCES Alumno(id_persona),
   FOREIGN KEY (id_curso) REFERENCES Curso(id_curso)
 );
 create table Dicta(
@@ -107,7 +110,7 @@ create table Dicta(
   dni_docente int(8) NOT NULL,
   PRIMARY KEY(id_curso,dni_docente),
   FOREIGN KEY (id_curso) REFERENCES Curso(id_curso),
-  FOREIGN KEY (dni_docente) REFERENCES Docente(dni_persona)
+  FOREIGN KEY (dni_docente) REFERENCES Docente(id_persona)
 );
 
 create table Contiene(
@@ -119,9 +122,9 @@ create table Contiene(
 );
 
 create table Carga(
-  dni_docente int(8) NOT NULL,
+  id_docente int(8) NOT NULL,
   id_documento int(20) NOT NULL,
-  PRIMARY KEY(dni_docente,id_documento),
-  FOREIGN KEY (dni_docente) REFERENCES Docente(dni_persona),
+  PRIMARY KEY(id_docente,id_documento),
+  FOREIGN KEY (id_docente) REFERENCES Docente(id_persona),
   FOREIGN KEY (id_documento) REFERENCES Documento(id_documento)
 );
