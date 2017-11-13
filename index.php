@@ -22,7 +22,7 @@ $oLogin=new Login();
         <?php
 
 
-if($oLogin->activa()){
+//if($oLogin->activa()){
 
 ?>  
         <ul class="nav navbar-nav navbar-right">
@@ -39,10 +39,10 @@ if($oLogin->activa()){
         </ul>
 
 <?php
-}
-else{
+//}
+//else{
 
-  ?>   <ul class="nav navbar-nav navbar-right">
+  /*?>   <ul class="nav navbar-nav navbar-right">
           <li><a href="validarlogueo.php" id="login"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
       
       
@@ -50,8 +50,8 @@ else{
         </ul>
 
   <?php
-}
-?><?php echo"<p>".$oLogin->getNombreUsuario()." / rol: ".$oLogin->getRol()."</p>";?>
+//}
+?><?php*/ echo"<p>".$oLogin->getNombreUsuario()." / rol: ".$oLogin->getRol()."</p>";?>
         <ul class="nav navbar-nav navbar-right">
           <li class="active"id="inicio"><a href="#">Inicio</a></li>
           <li id="bibliotec"><a href="#" id="biblioteca">Biblioteca</a></li>
