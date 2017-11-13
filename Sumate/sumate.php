@@ -19,6 +19,15 @@
         Acordate vos das el paso y nosotros te acompañamos!
         ¡¡Así que no te lo pierdas e inscribite! ¡¡Te esperamos!!
       </p>
+      <div class="alert alert-success" id="ing_correcto">
+        <strong>¡Ingresado correctamente!</strong>
+      </div>
+      <div class="alert alert-danger" id="ing_inc_nombre_usuario">
+        <strong>Ingreso Incorrecto</strong> Nombre de Usuario ya utilizado
+      </div>
+      <div class="alert alert-danger" id="ing_inc_email">
+        <strong>Ingreso Incorrecto</strong> Email ya utilizado
+      </div>
       <form class="form" method="post" id="sumate" >
         <div class="form-group">
           <label for="nombre">Nombre</label><input type="text" class="form-control" name="nombre" id="nombre" />
@@ -37,6 +46,9 @@
             <label for="nombre_usuario">Nombre de Usuario</label><input type="text" class="form-control" name="nombre_usuario" id="nombre_usuario" />
             <div class="error" id="nombre_usuario_error">
               <p>El campo Nombre de Usuario es obligatorio</p>
+            </div>
+            <div class="error" id="nombre_usuario_error_2">
+              <p>Nombre de Usuario ya utilizado</p>
             </div>
           </div>
 
@@ -61,6 +73,9 @@
           <div class="error" id="email_error">
             <p>El campo email es obligatorio</p>
           </div>
+          <div class="error" id="email_error_2">
+            <p>Mail ya utilizado</p>
+          </div>
         </div>
 
         <div class="form-group">
@@ -77,8 +92,8 @@
         </div>
         <div class="form-group">
           <label for="">Tipo de Usuario: </label>
-          <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" value="alumno" onclick="borrarCampoDocente();"checked>Alumno</label>
-          <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" value="docente" onclick="mostrarCampoDocente();">Docente</label>
+          <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" id="tipo_usuario" value="alumno" onclick="borrarCampoDocente();"checked>Alumno</label>
+          <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" id="tipo_usuario" value="docente" onclick="mostrarCampoDocente();">Docente</label>
         </div>
         <div class="form-group">
           <label for="term_cond">Acepto los <a href="Sumate/terminos_y_condiciones.php">Terminos y Condiciones</a> </label>
@@ -239,6 +254,7 @@
     <script type="text/javascript">
     $(document).ready(function() {
       $('.error').hide();
+      $('.alert').hide();
       $("#enviar").click(function(){
         //Obtengo nombre y hago comprobaciones
         var nombre = $("#nombre").val();
@@ -319,7 +335,7 @@
 
         }else{
           $("#fecha_error").show();
-          $("#fecha_nac").focus();
+
           sale = false;
         }
         var term_cond = $("#term_cond").val();
@@ -330,6 +346,49 @@
           $("#term_cond").focus();
           sale = false;
         }
+        var tipo_usuario = $("input:radio[name=tipo_usuario]:checked").val();
+        console.log(tipo_usuario);
+        console.log(sale);
+        if(sale){
+          $.post( "Sumate/ingresar_usuario.php", {nombre:nombre }, null, "json" )
+              .done(function( data, textStatus, jqXHR ) {
+                      var ing_correcto = data.ing_correcto;
+                      var ing_inc_nom_usu = data.ing_inc_nombre_usuario;
+                      var ing_inc_mail = data.ing_inc_email;
+                      if(ing_correcto){
+                        $("#ing_correcto").show();
+                        setTimeout(function(){window.location.href = "http://localhost/aprender2/"; }, 3000);
+                      }else{
+                        if(ing_inc_nom_usu){
+                          $("#ing_inc_nombre_usuario").show();
+                          $("#nombre_usuario_error_2").show();
+                          $("#nombre_usuario").focus();
+                          sale = false;
+                        }else{
+                          $("#ing_inc_nombre_usuario").hide();
+                          $("#nombre_usuario_error_2").hide();
+                        }
+                        if(ing_inc_mail){
+                          $("#ing_inc_email").show();
+                          $("#email_error_2").show();
+                          $("#email").focus();
+                          sale = false;
+                        }else{
+                          $("#ing_inc_email").hide();
+                          $("#email_error_2").hide();
+                        }
+                      }
+
+              })
+              .fail(function( jqXHR, textStatus, errorThrown ) {
+                  if ( console && console.log ) {
+                      console.log( "La solicitud a fallado: " +  textStatus);
+                  }
+          });
+
+
+        }
+
         return sale;
       });
     });
