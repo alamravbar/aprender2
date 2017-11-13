@@ -19,3 +19,5 @@ INSERT INTO `Rol`(`rol`) VALUES ("alumno"), ("docente"), ("moderador"),("adminis
 ALTER TABLE Persona ADD fecha_nac date;
 ALTER TABLE Usuario ADD habilitado int(1);
 ALTER TABLE Docuento ADD habilitado int(1);*/
+//Agregue 12-11 esto:
+ALTER TABLE Usuario ADD fecha_creacion date; //Para ordenarlo segun la fecha que se lo creo
