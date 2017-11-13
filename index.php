@@ -27,6 +27,15 @@ if($oLogin->activa()){
 ?>  
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#" id="login"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              Nombre de Usuario <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Cambiar Contraseña</a></li>
+              <li><a href="#">Salir</a></li>
+            </ul>
+          </li>
         </ul>
 
 <?php
@@ -50,6 +59,7 @@ else{
           <li id="sugerenci"><a href="#" id="sugerencia">Sugerencias</a></li>
           <li id="plataform"><a href="#" id="plataforma">Plataforma</a></li>
           <li id="sumat"><a href="#" id="sumate">Sumate</a></li>
+          <li id="administracio"><a href="#" id="administracion">Administración</a></li>
         </ul>
       </div>
     </nav>
@@ -121,53 +131,64 @@ else{
   </footer>
   <!--footer start from here-->
   <!-- Modal -->
-   <div class="modal fade" id="modalLogin" role="dialog">
-     <div class="modal-dialog">
+  <div class="modal fade" id="modalLogin" role="dialog">
+    <div class="modal-dialog">
 
-       <!-- Modal content-->
-           <div class="modal-content">
-             <div class="modal-header" style="padding:35px 50px;">
-               <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4><span class="glyphicon glyphicon-lock"></span> Ingresar </h4>
-             </div>
-             <div class="modal-body" style="padding:40px 50px;">
-               <form role="form" method="POST">
-                 <div class="form-group">
-                   <label for="username"><span class="glyphicon glyphicon-user"></span> Usuario</label>
-                   <input type="text" class="form-control" name="username" id="username" placeholder="Ingrese Em@il">
-                 </div>
-                 <div class="form-group">
-                   <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Contraseña</label>
-                   <input type="text" class="form-control" id="psw" name="psw" placeholder="Ingrese Contraseña">
-                 </div>
-                 <div class="checkbox">
-                   <label><input type="checkbox" value="" checked>Recuerdame</label>
-                 </div>
-                   <input name="mysubmit" type="submit" value="Enviar" /></fieldset>
-                   <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Ingresar</button>
-                   <button type="submit" class="btn btn-danger btn-block" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-               </form>
-               <div id="result"></div>
-             </div>
-             <div class="modal-footer">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Ingresar </h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="username"><span class="glyphicon glyphicon-user"></span> Usuario</label>
+              <input type="text" class="form-control" id="username" placeholder="Ingrese Em@il">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Contraseña</label>
+              <input type="text" class="form-control" id="psw" placeholder="Ingrese Contraseña">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked>Recuerdame</label>
+            </div>
+            <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Ingresar</button>
+            <button type="submit" class="btn btn-danger btn-block" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+          </form>
+        </div>
+        <div class="modal-footer">
 
 
-             </div>
-           </div>
+        </div>
+      </div>
 
-         </div>
-       </div>
+    </div>
+  </div>
 
 
   <script type="text/javascript" src="js/jquery.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript">
   $(document).ready(function() {
-    $.get("inicio.php", function(data){
+    $.get("Inicio/inicio.php", function(data){
       $("#vista").html(data);
     });
     $("#login").click(function(){
-        $("#modalLogin").modal();
+      $("#modalLogin").modal();
+    });
+  });
+
+  $("#biblioteca").click(function(){
+    $.get("biblioteca.php", function(data){
+      $("#vista").html(data);
+      $("#bibliotec").addClass("active");
+      $("#asignatur").removeClass("active");
+      $("#administacio").removeClass("active");
+      $("#sugerenci").removeClass("active");
+      $("#plataform").removeClass("active");
+      $("#sumat").removeClass("active");
+      $("#inicio").removeClass("active");
     });
      // Interceptamos el evento submit
     $('#form').submit(function() {
@@ -186,40 +207,78 @@ else{
   
     
   });
+  $("#sumate").click(function(){
+    $.get("Sumate/sumate.php", function(data){
+      $("#vista").html(data);
+      $("#sumat").addClass("active");
+      $("#asignatur").removeClass("active");
+      $("#administacio").removeClass("active");
+      $("#sugerenci").removeClass("active");
+      $("#plataform").removeClass("active");
+      $("#bibliotec").removeClass("active");
+      $("#inicio").removeClass("active");
+    });});
 
-    $("#biblioteca").click(function(){
-      $.get("biblioteca.php", function(data){
+    $("#administracion").click(function(){
+      $.get("Administracion/administracion.php", function(data){
         $("#vista").html(data);
-         $("#bibliotec").addClass("active");
-         $("#asignatur").removeClass("active");
-         $("#sugerenci").removeClass("active");
-         $("#plataform").removeClass("active");
-         $("#sumat").removeClass("active");
-         $("#inicio").removeClass("active");
+        $("#administacio").addClass("active");
+        $("#bibliotec").removeClass("active");
+        $("#asignatur").removeClass("active");
+        $("#sugerenci").removeClass("active");
+        $("#plataform").removeClass("active");
+        $("#sumat").removeClass("active");
+        $("#inicio").removeClass("active");
       });
     });
-    $("#sumate").click(function(){
-      $.get("sumate.php", function(data){
+    $("#sugerencia").click(function(){
+      $.get("Sugerencia/sugerencia.php", function(data){
         $("#vista").html(data);
-        $("#sumat").addClass("active");
+        $("#sugerenci").addClass("active");
+        $("#bibliotec").removeClass("active");
+        $("#asignatur").removeClass("active");
+        $("#plataform").removeClass("active");
+        $("#administacio").removeClass("active");
+        $("#sumat").removeClass("active");
+        $("#inicio").removeClass("active");
+      });
+    });
+    $("#asignatura").click(function(){
+      $.get("Asignatura/asignatura.php", function(data){
+        $("#vista").html(data);
+        $("#asignatur").addClass("active");
+        $("#bibliotec").removeClass("active");
+        $("#plataform").removeClass("active");
+        $("#sugerenci").removeClass("active");
+        $("#administacio").removeClass("active");
+        $("#sumat").removeClass("active");
+        $("#inicio").removeClass("active");
+      });
+    });
+    $("#plataforma").click(function(){
+      $.get("Plataforma/plataforma.php", function(data){
+        $("#vista").html(data);
+        $("#plataform").addClass("active");
+        $("#bibliotec").removeClass("active");
+        $("#asignatur").removeClass("active");
+        $("#sugerenci").removeClass("active");
+        $("#administacio").removeClass("active");
+        $("#sumat").removeClass("active");
+        $("#inicio").removeClass("active");
+      });
+    });
+    $("#inicio").click(function(){
+      $.get("Inicio/inicio.php", function(data){
+        $("#vista").html(data);
+        $("#inicio").addClass("active");
         $("#asignatur").removeClass("active");
         $("#sugerenci").removeClass("active");
         $("#plataform").removeClass("active");
         $("#bibliotec").removeClass("active");
-        $("#inicio").removeClass("active");
+        $("#sumat").removeClass("active");
       });});
 
-      $("#inicio").click(function(){
-        $.get("inicio.php", function(data){
-          $("#vista").html(data);
-          $("#inicio").addClass("active");
-          $("#asignatur").removeClass("active");
-          $("#sugerenci").removeClass("active");
-          $("#plataform").removeClass("active");
-          $("#bibliotec").removeClass("active");
-          $("#sumat").removeClass("active");
-        });});
-  </script>
+      </script>
 
-</body>
-</html>
+    </body>
+    </html>
