@@ -21,3 +21,8 @@ ALTER TABLE Usuario ADD habilitado int(1);
 ALTER TABLE Docuento ADD habilitado int(1);*/
 //Agregue 12-11 esto:
 ALTER TABLE Usuario ADD fecha_creacion date; //Para ordenarlo segun la fecha que se lo creo
+
+AGREGUE 13-11 esto:
+INSERT INTO `Persona`(`nombre`, `apellido`, `fecha_nac`) VALUES ('alam','ravbar','1991-07-27')
+INSERT INTO `Usuario`(`mail`, `nombre`, `psw`, `habilitado`, `id_rol`, `id_persona`, `fecha_creacion`) VALUES
+('alam.ravbar@gmail.com','alamb','coquito',1,4,2,'2017-11-13');

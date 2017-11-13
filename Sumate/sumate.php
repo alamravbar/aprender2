@@ -85,11 +85,12 @@
               <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
               <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
           </div>
+          <div class="error" id="fecha_error">
+            <p>Debe introducir una fecha correcta</p>
+          </div>
           <input type="hidden" id="dtp_input2" value="" /><br/>
         </div>
-        <div class="error" id="fecha_error">
-          <p>Debe introducir una fecha correcta</p>
-        </div>
+
         <div class="form-group">
           <label for="">Tipo de Usuario: </label>
           <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" id="tipo_usuario" value="alumno" onclick="borrarCampoDocente();"checked>Alumno</label>
@@ -350,13 +351,23 @@
         console.log(tipo_usuario);
         console.log(sale);
         if(sale){
-          $.post( "Sumate/ingresar_usuario.php", {nombre:nombre }, null, "json" )
+          $.post( "Sumate/ingresar_usuario.php", $("form").serialize(), null, "json" )
               .done(function( data, textStatus, jqXHR ) {
                       var ing_correcto = data.ing_correcto;
                       var ing_inc_nom_usu = data.ing_inc_nombre_usuario;
                       var ing_inc_mail = data.ing_inc_email;
+                      if(data.error != ""){
+                        console.log("ERROR: "+data.error);
+                      }else{
+                        console.log("MAIL: "+data.ing_inc_nombre_usuario);
+                      }
+
                       if(ing_correcto){
                         $("#ing_correcto").show();
+                        $("#ing_inc_email").hide();
+                        $("#email_error_2").hide();
+                        $("#ing_inc_nombre_usuario").hide();
+                        $("#nombre_usuario_error_2").hide();
                         setTimeout(function(){window.location.href = "http://localhost/aprender2/"; }, 3000);
                       }else{
                         if(ing_inc_nom_usu){
