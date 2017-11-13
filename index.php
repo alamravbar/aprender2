@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+include_once('lib/Login.php');
+$oLogin=new Login();
+
+?>
 <html>
 <head>
   <meta charset="utf-8">
@@ -15,10 +19,30 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="#"><img src="img/logo.png" alt="Logo aprender.com.ar"></a>
         </div>
+        <?php
+
+
+if($oLogin->activa()){
+
+?>  
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#" id="login"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
         </ul>
 
+<?php
+}
+else{
+
+  ?>   <ul class="nav navbar-nav navbar-right">
+          <li><a href="validarlogueo.php" id="login"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
+      
+      
+          <li><a href="cerrarsesion.php" name="logout" id="logout"><span class="glyphicon glyphicon-log-in"></span> Salir </a></li>
+        </ul>
+
+  <?php
+}
+?><?php echo"<p>".$oLogin->getNombreUsuario()." / rol: ".$oLogin->getRol()."</p>";?>
         <ul class="nav navbar-nav navbar-right">
           <li class="active"id="inicio"><a href="#">Inicio</a></li>
           <li id="bibliotec"><a href="#" id="biblioteca">Biblioteca</a></li>
@@ -107,21 +131,23 @@
                <h4><span class="glyphicon glyphicon-lock"></span> Ingresar </h4>
              </div>
              <div class="modal-body" style="padding:40px 50px;">
-               <form role="form">
+               <form role="form" method="POST">
                  <div class="form-group">
                    <label for="username"><span class="glyphicon glyphicon-user"></span> Usuario</label>
-                   <input type="text" class="form-control" id="username" placeholder="Ingrese Em@il">
+                   <input type="text" class="form-control" name="username" id="username" placeholder="Ingrese Em@il">
                  </div>
                  <div class="form-group">
                    <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Contraseña</label>
-                   <input type="text" class="form-control" id="psw" placeholder="Ingrese Contraseña">
+                   <input type="text" class="form-control" id="psw" name="psw" placeholder="Ingrese Contraseña">
                  </div>
                  <div class="checkbox">
                    <label><input type="checkbox" value="" checked>Recuerdame</label>
                  </div>
+                   <input name="mysubmit" type="submit" value="Enviar" /></fieldset>
                    <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Ingresar</button>
                    <button type="submit" class="btn btn-danger btn-block" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
                </form>
+               <div id="result"></div>
              </div>
              <div class="modal-footer">
 
@@ -143,6 +169,22 @@
     $("#login").click(function(){
         $("#modalLogin").modal();
     });
+     // Interceptamos el evento submit
+    $('#form').submit(function() {
+  // Enviamos el formulario usando AJAX
+        $.ajax({
+            type: 'POST',
+            url: 'validarlogueo.php',
+            data: $(this).serialize(),
+            // Mostramos un mensaje con la respuesta de PHP
+            success: function(data) {
+                $('#result').html(data);
+            }
+        })        
+        return false;
+    }); 
+  
+    
   });
 
     $("#biblioteca").click(function(){
