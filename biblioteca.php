@@ -19,11 +19,17 @@ $oLogin=new Login();
     <!--   <a href="pruebas/subirArchivos/index.php"><img src="img/iconos/+.png" alt="Subir Documento"></a>
   -->
   <?php
-  echo $oLogin->getRol();
+  if($oLogin->getRol()==2){
+    
   ?>
+
    <ul class="nav navbar-nav navbar-right">
   <li><button type="button" class="openBtn"><img src="img/iconos/+.png" alt="Subir Documento"></button></li>
 </ul>
+  <?php
+    }
+  
+  ?>
 </div>
 </div>
 
