@@ -19,12 +19,7 @@ $oLogin=new Login();
         <div class="navbar-header">
           <a class="navbar-brand" href="#"><img src="img/logo.png" alt="Logo aprender.com.ar"></a>
         </div>
-        <?php
-
-
-//if($oLogin->activa()){
-
-?>  
+ 
         <ul class="nav navbar-nav navbar-right">
           <?php
           if(!$oLogin->activa()){ ?>
@@ -33,7 +28,7 @@ $oLogin=new Login();
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
              <?php
-             
+
                echo $oLogin->getNombreUsuario();
              echo 	$oLogin->getRol ();
              ?> <span class="caret"></span>
@@ -44,11 +39,11 @@ $oLogin=new Login();
             </ul>
           </li>
         </ul>
-        
+
         <?php     }
-             
+
              ?>
-  
+
         <ul class="nav navbar-nav navbar-right">
           <li class="active"id="inicio"><a href="#">Inicio</a></li>
           <li id="bibliotec"><a href="#" id="biblioteca">Biblioteca</a></li>
@@ -152,7 +147,7 @@ $oLogin=new Login();
             </div>
             <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Ingresar</button>
             <button type="submit" class="btn btn-danger btn-block" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-          
+
           </form>
           <div id="result"></div>
         </div>
@@ -191,8 +186,8 @@ $oLogin=new Login();
     });
      // Interceptamos el evento submit
 
-  
-    
+
+
   });
   $("#sumate").click(function(){
     $.get("Sumate/sumate.php", function(data){
