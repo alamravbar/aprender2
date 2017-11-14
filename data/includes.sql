@@ -26,3 +26,15 @@ AGREGUE 13-11 esto:
 INSERT INTO `Persona`(`nombre`, `apellido`, `fecha_nac`) VALUES ('alam','ravbar','1991-07-27')
 INSERT INTO `Usuario`(`mail`, `nombre`, `psw`, `habilitado`, `id_rol`, `id_persona`, `fecha_creacion`) VALUES
 ('alam.ravbar@gmail.com','alamb','coquito',1,4,2,'2017-11-13');
+ALTER TABLE Persona ADD genero varchar(1);  //ingresar m para masculino f para femenino
+
+// 14 de noviembre
+//elimine y agregue de nuevo la tabla Obtuvo
+create table Obtuvo(
+  id_titulo int(20) NOT NULL,
+  id_docente int(8) NOT NULL,
+  anio_obtension int(4) NOT NULL,
+  PRIMARY KEY (id_titulo,id_docente),
+  FOREIGN KEY (id_titulo) REFERENCES Titulo(id_titulo),
+  FOREIGN KEY (id_docente) REFERENCES Docente(id_persona)
+);

@@ -21,11 +21,8 @@ class PDOConfig extends PDO {
         array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
     }
 
-	public function query($sql){
-    if($this->debug){
-        echo "Consulta a ejecutar: /** ".$sql.' **/ <br />';
-    }
-    $resultado=parent::query($sql);
+	public function idQuery($name){
+    $resultado=parent::lastInsertId($name);
 
     if(!$resultado){
         if($this->debug){
@@ -35,6 +32,17 @@ class PDOConfig extends PDO {
     }else
      return $resultado;
    }
+   public function query($sql){
+     if($this->debug){
+       echo "Consulta a ejecutar: /** ".$sql.' **/ <br />'; }
+       $resultado=parent::query($sql);
+       if(!$resultado){
+         if($this->debug){
+           print_r($this->errorInfo());
+         }
+         return false;
+       }else return $resultado;
+     }
 
    public function setDebug($debug){
    	$this->debug = $debug;

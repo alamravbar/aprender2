@@ -90,11 +90,17 @@
           </div>
           <input type="hidden" id="dtp_input2" value="" /><br/>
         </div>
-
-        <div class="form-group">
-          <label for="">Tipo de Usuario: </label>
-          <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" id="tipo_usuario" value="alumno" onclick="borrarCampoDocente();"checked>Alumno</label>
-          <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" id="tipo_usuario" value="docente" onclick="mostrarCampoDocente();">Docente</label>
+        <div class="row">
+          <div class="form-group col-md-6 col-sm-12">
+            <label for="">Tipo de Usuario: </label>
+            <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" id="tipo_usuario" value="alumno" onclick="borrarCampoDocente();"checked>Alumno</label>
+            <label for="tipo_usuario" class="radio-inline"><input type="radio" name="tipo_usuario" id="tipo_usuario" value="docente" onclick="mostrarCampoDocente();">Docente</label>
+          </div>
+          <div class="form-group  col-md-6 col-sm-12">
+            <label for="">Tipo de Usuario: </label>
+            <label for="genero" class="radio-inline"><input type="radio" name="genero" id="genero" value="m" checked>Femenino</label>
+            <label for="genero" class="radio-inline"><input type="radio" name="genero" id="genero" value="f">Masculino</label>
+          </div>
         </div>
         <div class="form-group">
           <label for="term_cond">Acepto los <a href="Sumate/terminos_y_condiciones.php">Terminos y Condiciones</a> </label>
@@ -131,8 +137,7 @@
                   <input type="hidden" id="dtp_input1" value="" /><br/>
                 </div>
               </div>
-              <div class="" id="mas_titulos"></div>
-              <a href="#" onclick="agregarCampos();" class="btn btn-default">+ Titulos</a>
+
             </fieldset>
           </fieldset>
         </div>
@@ -151,51 +156,7 @@
     <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
     <script type="text/javascript" src="js/bootstrap-datetimepicker.es.js" charset="UTF-8"></script>
     <script type="text/javascript">
-      var nextinput = 0;
-      function agregarCampos(){
-        nextinput++;
-        campo='';
-        campo+='<div class="form-group">';
-        campo+='  <label for="titulo_'+nextinput+'">Titulo</label><input type="text" name="titulo_'+nextinput+'" value="" class="form-control"/>';
-        campo+='  <label for="descripcion_titulo_'+nextinput+'">Breve Descripción</label> <textarea name="descripcion_titulo_'+nextinput+'" rows="3" class="form-control"></textarea>';
-        campo+='  <div class="form-group">';
-        campo+='    <label for="dtp_input1" class="control-label">Año de Obtención de Titulo</label>';
-        campo+='    <div class="input-group date form_datetime" data-date="2015-10-23T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">';
-        campo+='      <input class="form-control" type="text" value=""  name="anio_obtension_'+nextinput+'" readonly>';
-        campo+='      <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>';
-        campo+='       <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>';
-        campo+='    </div>';
-        campo+='    <input type="hidden" id="dtp_input1" value="" /><br/>';
-        campo+='  </div>';
-        campo+='</div>';
-        // campo ='<div class="form-group>"';
-        // campo +='<label for="titulo_'+nextinput+'"> Titulo </label> <input type="text" id="titulo_' + nextinput + '"&nbsp; name="titulo_' + nextinput + '"&nbsp; class="form-control" /><br>';
-        // campo +='</div>';
-        // campo +='<div class="form-group>"';
-        // campo += '<label for="descripcion_titulo_'+nextinput+'">Breve Descripción</label> <textarea id="descripcion_titulo_' + nextinput + '"&nbsp; name="descripcion_titulo_' + nextinput + '" class="form-control rows="3"></textarea><br>';
-        // campo +='</div>';
-        // campo +='<div class="form-group">';
-        // campo +='<label for="dtp_input1" class="control-label">Año de Obtención de Titulo</label>';
-        // campo +='<div class="input-group date form_datetime" data-date="2010-10-23T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">';
-        // campo +='<input class="form-control" type="text" name="anio_obtension_"'+nextinput+' readonly>';
-        // campo +='<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>';
-        // campo +='<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>';
-        // campo +='</div>';
-        // campo +='<input type="hidden" id="dtp_input1" value="" /><br/>';
-        // campo +='</div>';
-        $("#mas_titulos").append(campo);
-        $('.form_datetime').datetimepicker({
-          format: " yyyy",
-      		viewMode: "years",
-      		minViewMode: "years",
-      		startView:4,
-      		endView:4,
-      		minView:4,
-      		maxView:4,
-      		autoclose:true,
-      		startDate:"1910"
-          });
-      }
+
       function mostrarCampoDocente(){
         $("#campo_docente").show();
       }
@@ -223,7 +184,7 @@
         });
     	$('.form_date').datetimepicker({
         language:  'es',
-        format: " yyyy/mm/dd",
+        format: "yyyy-mm-dd",
         weekStart: 1,
         todayBtn:  1,
     		autoclose: 1,
@@ -330,15 +291,13 @@
         }
         //Obtengo nombre y hago comprobaciones
         var fecha_nac = $("#fecha_nac").val();
-        var date = new Date(fecha_nac);
+        /*var date = new Date(fecha_nac);
         if(date instanceof Date && !isNaN(date.valueOf())){
           $("#fecha_error").hide();
-
         }else{
           $("#fecha_error").show();
-
           sale = false;
-        }
+        }*/
         var term_cond = $("#term_cond").val();
         if($('#term_cond').prop('checked')){
           $("#term_cond_error").hide();
@@ -357,18 +316,18 @@
                       var ing_inc_nom_usu = data.ing_inc_nombre_usuario;
                       var ing_inc_mail = data.ing_inc_email;
                       if(data.error != ""){
-                        console.log("ERROR: "+data.error);
-                      }else{
-                        console.log("MAIL: "+data.ing_inc_nombre_usuario);
+                        console.log(data.error);
                       }
-
+                        console.log("Prueba: "+data.prueba);
+                        console.log("email: "+data.ing_inc_email);
+                        console.log("nombre_usuario: "+ing_inc_nom_usu);
                       if(ing_correcto){
                         $("#ing_correcto").show();
                         $("#ing_inc_email").hide();
                         $("#email_error_2").hide();
                         $("#ing_inc_nombre_usuario").hide();
                         $("#nombre_usuario_error_2").hide();
-                        setTimeout(function(){window.location.href = "http://localhost/aprender2/"; }, 3000);
+                      setTimeout(function(){alert("Agregado Exitosamente");window.location.href = "http://localhost/aprender2/"; }, 3000);
                       }else{
                         if(ing_inc_nom_usu){
                           $("#ing_inc_nombre_usuario").show();

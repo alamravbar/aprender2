@@ -90,12 +90,13 @@ create table Documento(
 
 create table Obtuvo(
   id_titulo int(20) NOT NULL,
-  dni_docente int(8) NOT NULL,
+  id_docente int(8) NOT NULL,
   anio_obtension int(4) NOT NULL,
-  PRIMARY KEY (id_titulo,dni_docente),
+  PRIMARY KEY (id_titulo,id_docente),
   FOREIGN KEY (id_titulo) REFERENCES Titulo(id_titulo),
-  FOREIGN KEY (dni_docente) REFERENCES Docente(id_persona)
+  FOREIGN KEY (id_docente) REFERENCES Docente(id_persona)
 );
+
 create table Participa(
   dni_alumno int(8) NOT NULL,
   id_curso int(20) NOT NULL,
