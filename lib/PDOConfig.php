@@ -51,5 +51,22 @@ class PDOConfig extends PDO {
  public function getDebug(){
    	return $this->debug;
    }
+   /**
+     * filtra un string de posibles ataques
+     * 
+     * @param string $variable
+     * @return string variable escapando posibles ataques
+     */
+    public function filtrar($variable) {
+        // Este if se encargará de retirar las barras en caso de que las comillas mágicas estén habilitadas
+        if (get_magic_quotes_gpc()) {
+            $variable = stripslashes($variable);
+        }
+        if (!is_numeric($variable)) {
+            $variable = substr($this->quote($variable),1,-1); 
+        }
+        return $variable;
+    }
+
 
 }
