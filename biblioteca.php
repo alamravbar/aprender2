@@ -1,5 +1,10 @@
 
+<?php
+include_once "lib/Login.php";
 
+$oLogin=new Login();
+
+?>
 <div class="container">
   <p class="intros">
     Biblioteca es una colección de los libros, documentos, videos, infografías realizadas por
@@ -9,10 +14,14 @@
 
 
 
-
+<?php if($oLogin->activa()){?>
   <div class="botones" style="float:right;margin-right:1%;margin-bottom:1%;">
     <!--   <a href="pruebas/subirArchivos/index.php"><img src="img/iconos/+.png" alt="Subir Documento"></a>
-  --> <ul class="nav navbar-nav navbar-right">
+  -->
+  <?php
+  echo $oLogin->getRol();
+  ?>
+   <ul class="nav navbar-nav navbar-right">
   <li><button type="button" class="openBtn"><img src="img/iconos/+.png" alt="Subir Documento"></button></li>
 </ul>
 </div>
@@ -37,6 +46,9 @@
 <div class="show_archive">
 
 </div>
+<?php } 
+
+?>
 <br>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>

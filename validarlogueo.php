@@ -14,6 +14,7 @@ if ($oLogin->validar()){
 	exit();
 }else{
 	echo $oLogin->getError();
+	echo "ssssssssssssss";
 	exit("<a href='index.php'>Login</a>");
 }
 ?>
