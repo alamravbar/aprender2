@@ -4,8 +4,8 @@
   if($_POST){
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
-    $nombre_usuario = $_POST['nombre_usuario'];
-    $psw = $_POST['psw'];
+    $nombre_usuario = $_POST['nombre_usuario_tabla'];
+    $psw = $_POST['psw_tabla'];
     $email = $_POST['email'];
     $fecha_nac = $_POST['fecha_nac'];
     $acepto_los_terminos = $_POST['term_cond'];
@@ -29,12 +29,12 @@
           $myObj["ing_correcto"] = false;
           $myObj["ing_inc_email"]=true;
           $ing_cor = false;
-          $myObj['prueba']=$dato;
         }else{
           $myObj["ing_inc_email"]=false;
         }
       }
     }
+
     if($nombre_usuario != ""){
       $base = new PDOConfig();
       $sql= "SELECT nombre FROM Usuario WHERE nombre= '".$nombre_usuario."'";
@@ -70,11 +70,12 @@
        ('id_usuario','mail','nombre_usuario','psw','habilitado','id_rol','id_persona','fecha_creacion')**/
        //$myObj['prueba']=$tipo_usuario;
        $id_rol = 0;
+       $myObj['prueba']=$tipo_usuario;
        if($tipo_usuario == "alumno"){
          $habilitado = 1;
          $id_rol = 1;
-         $sqlPersona = "INSERT INTO `Alumno`(`id_persona`) VALUES ('".$id_persona."')";
-         $resultado=$base->query($sql);
+         $sqlAlumno = "INSERT INTO `Alumno`(`id_persona`) VALUES ('".$id_persona."')";
+         $resultado=$base->query($sqlAlumno);
          if(!$resultado){
            $myObj['error'] ="ERROR: Resultado Inesperado en la consulta a la BD por insertar alumno";
          }else{
@@ -94,7 +95,6 @@
 
            $sql ="INSERT INTO `Docente`(`id_persona`, `cuil`, `habilitado`, `cert_serv`) VALUES ('".$id_persona."','".$cuil."',".$habilitado.",".$cert_serv_2.")";
            $resultado=$base->query($sql);
-           $myObj['prueba']="Cert_Serv: ".$sql;
            if(!$resultado){
              $myObj['error'] ="ERROR: Resultado Inesperado en la consulta a la BD por insertar docente";
            }else{
@@ -105,7 +105,7 @@
              $descripcion_titulo = $_POST['descripcion_titulo_0'];
              $anio_obtension = $_POST['anio_obtension_0'];
              $sqlTitulo = "INSERT INTO `Titulo`( `nombre`, `descripcion`) VALUES ('".$titulo."','".$descripcion_titulo."')";
-             $myObj['prueba'] = $sqlTitulo;
+            //  $myObj['prueba'] = $sqlTitulo;
              $resultado= $base->query($sqlTitulo);
              $id_titulo = $base->lastInsertId();
              if(!$resultado){

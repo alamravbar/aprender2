@@ -57,7 +57,7 @@ include_once "../../lib/PDOConfig.php";
           $resEtiqueta=$base->query($sqlEtiqueta);
 
           if($resEtiqueta){
-            echo "ingresaado";
+            echo "ingresado";
           }
         }
       }else{
