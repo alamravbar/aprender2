@@ -28,8 +28,8 @@
 					exit();
 				}else{
 					echo $oLogin->getError();
-					header('location:index.php');
-					exit();
+					
+				
 				}
 				?>
 		</div>

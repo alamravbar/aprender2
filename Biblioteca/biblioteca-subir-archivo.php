@@ -2,7 +2,7 @@
 include_once "../../lib/PDOConfig.php";
 $base=new PDOConfig;
 
-$sql="select * from Categoria";
+$sql="select * from categoria";
 $resultado=$base->query($sql);
 if(!$resultado){
   echo "Error en consulta";
@@ -14,7 +14,7 @@ if(!$resultado){
     $categoria.="<option value=".$elem['id_categoria'].">".$elem['nombre']."</option>";
   }
   $categoria.="";
-  $sqletiquetas="select * from Etiqueta";
+  $sqletiquetas="select * from etiqueta";
   $resultadoCombo=$base->query($sqletiquetas);
   $datosCombo=$resultadoCombo->fetchAll(PDO::FETCH_ASSOC);
   $comboetiqueta="<div class='checkbox'>";

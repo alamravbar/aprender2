@@ -17,7 +17,7 @@ include_once "../../lib/PDOConfig.php";
     //obtenemos el archivo a subir
     $file = $_FILES['archivo']['name'];
 
-    $query=" select* from Documento where nombre='".$file."'";
+    $query=" select* from documento where nombre='".$file."'";
     //SELECT * FROM `archivos` WHERE imagen=
     $resultado=$base->query($query);
     $dato=$resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -40,11 +40,11 @@ include_once "../../lib/PDOConfig.php";
       $nombre=basename($file,$x);
       // echo "nombre:".$nombre."  extencion".$x;
 
-      $sql="insert into Documento(id_documento, nombre, ruta, extension, descripcion, id_categoria)
+      $sql="insert into documento(id_documento, nombre, ruta, extension, descripcion, id_categoria)
       VALUES (null,'".$nombre."','files/".$file."','".$extension[1]."','".$_POST['comentario']."',".$_POST['categoria'].")";
       $res=$base->query($sql);
       if($res){
-        $sqlIngresado="select id_documento from Documento where nombre='".$nombre."'";
+        $sqlIngresado="select id_documento from documento where nombre='".$nombre."'";
         $resIngreso=$base->query($sqlIngresado);
         $datosIngreso=$resIngreso->fetchAll(PDO::FETCH_ASSOC);
 
@@ -53,7 +53,7 @@ include_once "../../lib/PDOConfig.php";
 
         foreach($etiquetas as $elem){
           $sqlEtiqueta=" ";
-          $sqlEtiqueta="insert into Contiene(id_documento,id_etiqueta)values(".$datosIngreso[0]['id_documento'].",".$elem.")";
+          $sqlEtiqueta="insert into contiene(id_documento,id_etiqueta)values(".$datosIngreso[0]['id_documento'].",".$elem.")";
           $resEtiqueta=$base->query($sqlEtiqueta);
 
           if($resEtiqueta){

@@ -6,7 +6,7 @@ $oLogin=new Login();
 
 
 //id_documento 	nombre 	ruta 	extension 	descripcion 	id_categoria
-$sql=" select * from Documento";
+$sql=" select * from documento";
 $mostrar = "";
 $resultado=$base->query($sql);
 if(!$resultado){
