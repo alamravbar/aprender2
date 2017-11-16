@@ -11,7 +11,7 @@ class PDOConfig extends PDO {
     public function __construct(){
         $this->engine = 'mysql';
         $this->host = 'Localhost';
-        $this->database = 'TP_FINAL';
+        $this->database = 'tp_final_final';
         $this->user = 'root';
         $this->pass = '';
         $this->debug = false;
@@ -53,7 +53,7 @@ class PDOConfig extends PDO {
    }
    /**
      * filtra un string de posibles ataques
-     * 
+     *
      * @param string $variable
      * @return string variable escapando posibles ataques
      */
@@ -63,7 +63,7 @@ class PDOConfig extends PDO {
             $variable = stripslashes($variable);
         }
         if (!is_numeric($variable)) {
-            $variable = substr($this->quote($variable),1,-1); 
+            $variable = substr($this->quote($variable),1,-1);
         }
         return $variable;
     }
