@@ -1,7 +1,7 @@
 <?php
 include_once('lib/Login.php');
 $oLogin=new Login();
- echo 'Rol: '.$oLogin->getRol()." Nombre usuario: ".$oLogin->getNombreUsuario();
+ //echo 'Rol: '.$oLogin->getRol()." Nombre usuario: ".$oLogin->getNombreUsuario();
 ?>
 <html>
 <head>
@@ -30,7 +30,7 @@ $oLogin=new Login();
              <?php
 
                echo $oLogin->getNombreUsuario();
-             echo 	$oLogin->getRol ();
+            
              ?> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
