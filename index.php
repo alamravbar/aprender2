@@ -30,7 +30,7 @@ $oLogin=new Login();
              <?php
 
                echo $oLogin->getNombreUsuario();
-             echo 	$oLogin->getRol ();
+            
              ?> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
