@@ -38,3 +38,6 @@ create table Obtuvo(
   FOREIGN KEY (id_titulo) REFERENCES Titulo(id_titulo),
   FOREIGN KEY (id_docente) REFERENCES Docente(id_persona)
 );
+
+//14-11 Agregamos esto:
+ALTER TABLE `Documento` CHANGE `ruta` `ruta` VARCHAR(500) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;

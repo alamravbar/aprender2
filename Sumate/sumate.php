@@ -43,7 +43,7 @@
         </div>
         <div class="form-group row">
           <div class="col-md-4">
-            <label for="nombre_usuario">Nombre de Usuario</label><input type="text" class="form-control" name="nombre_usuario" id="nombre_usuario" />
+            <label for="nombre_usuario_tabla">Nombre de Usuario</label><input type="text" class="form-control" name="nombre_usuario_tabla" id="nombre_usuario_tabla" />
             <div class="error" id="nombre_usuario_error">
               <p>El campo Nombre de Usuario es obligatorio</p>
             </div>
@@ -54,7 +54,7 @@
 
 
           <div class="col-md-4">
-            <label for="psw">Clave</label><input type="password" class="form-control" name="psw" id="psw" id="psw" />
+            <label for="psw_tabla">Clave</label><input type="password" class="form-control" name="psw_tabla" id="psw_tabla" />
             <div class="error" id="psw_error">
               <p>El campo Contraseña es obligatorio</p>
             </div>
@@ -243,13 +243,13 @@
         }
 
         //Obtengo nombre_usuario y hago comprobaciones
-        var nombre_usuario = $("#nombre_usuario").val();
+        var nombre_usuario = $("#nombre_usuario_tabla").val();
         if(nombre_usuario != ""){
           $("#nombre_usuario_error").hide();
 
         }else{
           $("#nombre_usuario_error").show();
-          $("#nombre_usuario").focus();
+          $("#nombre_usuario_tabla").focus();
           sale = false;
         }
         //Obtengo email y hago comprobaciones
@@ -263,14 +263,14 @@
 
         }
         //Obtengo password psw y repetir_psw y hago comprobaciones
-        var psw = $("#psw").val();
+        var psw = $("#psw_tabla").val();
         var repetir_psw = $("#repetir_psw").val();
         if(psw != ""){
           $("#psw_error").hide();
 
         }else{
           $("#psw_error").show();
-          $("#psw").focus();
+          $("#psw_tabla").focus();
           sale = false;
         }
         if(repetir_psw != ""){
@@ -327,7 +327,7 @@
                         $("#email_error_2").hide();
                         $("#ing_inc_nombre_usuario").hide();
                         $("#nombre_usuario_error_2").hide();
-                      setTimeout(function(){alert("Agregado Exitosamente");window.location.href = "http://localhost/aprender2/"; }, 3000);
+                      //setTimeout(function(){alert("Agregado Exitosamente");window.location.href = "http://localhost/aprender2/"; }, 3000);
                       }else{
                         if(ing_inc_nom_usu){
                           $("#ing_inc_nombre_usuario").show();

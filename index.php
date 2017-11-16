@@ -1,7 +1,7 @@
 <?php
 include_once('lib/Login.php');
 $oLogin=new Login();
- echo 'Rol: '.$oLogin->getRol()." Nombre usuario: ".$oLogin->getNombreUsuario();
+ //echo 'Rol: '.$oLogin->getRol()." Nombre usuario: ".$oLogin->getNombreUsuario();
 ?>
 <html>
 <head>
@@ -19,7 +19,7 @@ $oLogin=new Login();
         <div class="navbar-header">
           <a class="navbar-brand" href="#"><img src="img/logo.png" alt="Logo aprender.com.ar"></a>
         </div>
- 
+
         <ul class="nav navbar-nav navbar-right">
           <?php
           if(!$oLogin->activa()){ ?>
@@ -140,7 +140,7 @@ $oLogin=new Login();
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Contraseña</label>
-              <input type="text" class="form-control" id="psw" name="psw" placeholder="Ingrese Contraseña">
+              <input type="password" class="form-control" id="psw" name="psw" placeholder="Ingrese Contraseña">
             </div>
             <div class="checkbox">
               <label><input type="checkbox" value="" checked>Recuerdame</label>
