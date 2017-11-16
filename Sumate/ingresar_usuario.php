@@ -19,7 +19,7 @@
     //Corroboro que el nombre_usuario y el email no se encuentren en la Base de datos:
     if($email != ""){
       $base = new PDOConfig();
-      $sql= "SELECT mail FROM Usuario WHERE mail= '".$email."'";
+      $sql= "SELECT mail FROM usuario WHERE mail= '".$email."'";
       $resultado=$base->query($sql);
       if(!$resultado){
         $myObj['error'] ="Resultado Inesperado en la consulta a la BD por email";
@@ -37,7 +37,7 @@
 
     if($nombre_usuario != ""){
       $base = new PDOConfig();
-      $sql= "SELECT nombre FROM Usuario WHERE nombre= '".$nombre_usuario."'";
+      $sql= "SELECT nombre FROM usuario WHERE nombre= '".$nombre_usuario."'";
       $resultado=$base->query($sql);
       if(!$resultado){
         $myObj['error'] ="Resultado Inesperado en la consulta a la BD por nombre_usuario";
@@ -58,7 +58,7 @@
       /** First enter in the data base the Persona, then Usuario and finally enter the Alumno or Docente table**/
       /** Entry Persona's table INSERT INTO `Persona`(`nombre`, `apellido`, `fecha_nac`) VALUES **/
       //$sql= "INSERT INTO 'Persona'('nombre', 'apellido', 'fecha_nac', 'genero') VALUES ('".$nombre."','".$apellido."','".$fecha_nac."','".$gerero."')";
-      $sql= "INSERT INTO `Persona`(`nombre`, `apellido`, `fecha_nac`, `genero`) VALUES ('".$nombre."','".$apellido."','".$fecha_nac."','".$genero."')";
+      $sql= "INSERT INTO `persona`(`nombre`, `apellido`, `fecha_nac`, `genero`) VALUES ('".$nombre."','".$apellido."','".$fecha_nac."','".$genero."')";
       $resultado=$base->query($sql);
       $id_persona = $base->lastInsertId();
       if(!$resultado){
@@ -74,7 +74,7 @@
        if($tipo_usuario == "alumno"){
          $habilitado = 1;
          $id_rol = 1;
-         $sqlAlumno = "INSERT INTO `Alumno`(`id_persona`) VALUES ('".$id_persona."')";
+         $sqlAlumno = "INSERT INTO `alumno`(`id_persona`) VALUES ('".$id_persona."')";
          $resultado=$base->query($sqlAlumno);
          if(!$resultado){
            $myObj['error'] ="ERROR: Resultado Inesperado en la consulta a la BD por insertar alumno";
@@ -93,7 +93,7 @@
              $cert_serv_2 = 0;
            }
 
-           $sql ="INSERT INTO `Docente`(`id_persona`, `cuil`, `habilitado`, `cert_serv`) VALUES ('".$id_persona."','".$cuil."',".$habilitado.",".$cert_serv_2.")";
+           $sql ="INSERT INTO `docente`(`id_persona`, `cuil`, `habilitado`, `cert_serv`) VALUES ('".$id_persona."','".$cuil."',".$habilitado.",".$cert_serv_2.")";
            $resultado=$base->query($sql);
            if(!$resultado){
              $myObj['error'] ="ERROR: Resultado Inesperado en la consulta a la BD por insertar docente";
@@ -104,7 +104,7 @@
              $titulo = $_POST["titulo_0"];
              $descripcion_titulo = $_POST['descripcion_titulo_0'];
              $anio_obtension = $_POST['anio_obtension_0'];
-             $sqlTitulo = "INSERT INTO `Titulo`( `nombre`, `descripcion`) VALUES ('".$titulo."','".$descripcion_titulo."')";
+             $sqlTitulo = "INSERT INTO `titulo`( `nombre`, `descripcion`) VALUES ('".$titulo."','".$descripcion_titulo."')";
             //  $myObj['prueba'] = $sqlTitulo;
              $resultado= $base->query($sqlTitulo);
              $id_titulo = $base->lastInsertId();
@@ -114,7 +114,7 @@
              }else{
                $myObj['error'] = "OK: Titulo insertado exitosamente";
                //Insert Obtuvo
-               $sqlObtuvo = "INSERT INTO `Obtuvo`(`id_titulo`, `id_docente`, `anio_obtension`) VALUES($id_titulo,$id_persona,$anio_obtension)";
+               $sqlObtuvo = "INSERT INTO `obtuvo`(`id_titulo`, `id_docente`, `anio_obtension`) VALUES($id_titulo,$id_persona,$anio_obtension)";
                $resultado= $base->query($sqlObtuvo);
                if(!$resultado){
                  $myObj['error'] ="ERROR: Resultado Inesperado en la consulta a la BD por insertar Obtuvo";
@@ -125,7 +125,7 @@
            }
          }
        }
-       $sql= "INSERT INTO `Usuario`(`mail`, `nombre`, `psw`, `habilitado`, `id_rol`, `id_persona`, `fecha_creacion`) VALUES ('".$email."','".$nombre_usuario."','".$psw."','".$habilitado."','".$id_rol."','".$id_persona."',NOW())";
+       $sql= "INSERT INTO `usuario`(`mail`, `nombre`, `psw`, `habilitado`, `id_rol`, `id_persona`, `fecha_creacion`) VALUES ('".$email."','".$nombre_usuario."','".$psw."','".$habilitado."','".$id_rol."','".$id_persona."',NOW())";
        $resultado=$base->query($sql);
        if(!$resultado){
          $myObj['error'] ="ERROR: Resultado Inesperado en la consulta a la BD por insertar Usuario";
