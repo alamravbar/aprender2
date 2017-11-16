@@ -5,7 +5,7 @@
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $nombre_usuario = $_POST['nombre_usuario_tabla'];
-    $psw = $_POST['psw_tabla'];
+    $psw = ($_POST['psw_tabla']);
     $email = $_POST['email'];
     $fecha_nac = $_POST['fecha_nac'];
     $acepto_los_terminos = $_POST['term_cond'];
