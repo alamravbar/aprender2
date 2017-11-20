@@ -1,5 +1,5 @@
 <?php
-include_once "../lib/PDOConfig.php";
+include_once "lib/PDOConfig.php";
 ?>
 <html>
 <head></head>
@@ -13,7 +13,8 @@ include_once "../lib/PDOConfig.php";
   {
 //print_r($_SERVER);
 
-
+//print_r($_FILES);
+//exit();
     //obtenemos el archivo a subir
     $file = $_FILES['archivo']['name'];
 

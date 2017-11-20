@@ -1,6 +1,6 @@
 <?php
 include_once "../lib/PDOConfig.php";
-$base=new PDOConfig();
+$base=new PDOConfig;
 
 $sql="select * from categoria";
 $resultado=$base->query($sql);
@@ -11,7 +11,7 @@ foreach($datos as $elem){
   $categoria.="<option value=".$elem['id_categoria'].">".$elem['nombre']."</option>";
 }
 $categoria.="";
-$sqletiquetas="select * from Etiqueta";
+$sqletiquetas="select * from etiqueta";
 $resultadoCombo=$base->query($sqletiquetas);
 $datosCombo=$resultadoCombo->fetchAll(PDO::FETCH_ASSOC);
 $comboetiqueta="<div class='checkbox'>";
@@ -34,7 +34,7 @@ $categorias.=" <option value='".$categoria['IdCategoria']."'>".$categoria['Descr
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <!-- <script type="text/javascript" src="functions.js"></script> -->
+  <script type="text/javascript" src="functions.js"></script>
 </head>
 <body>
   <!--el enctype debe soportar subida de archivos con multipart/form-data-->
@@ -61,7 +61,7 @@ $categorias.=" <option value='".$categoria['IdCategoria']."'>".$categoria['Descr
       </div>
       <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-          <input type="button" value="Subir archivo" class="btn-primary"/><br />
+          <input type="button" value="Subir archivo" class="btn <btn-primary></btn-primary>"/><br />
         </div>
 
 

@@ -27,7 +27,7 @@ $(document).ready(function(){
         var message = ""; 
         //hacemos la petición ajax  
         $.ajax({
-            url: 'upload.php',  
+            url: '../upload.php',  
             type: 'POST',
             // Form data
             //datos del formulario
