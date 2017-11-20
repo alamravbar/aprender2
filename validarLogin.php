@@ -28,11 +28,6 @@
 					exit();
 				}else{
 					echo $oLogin->getError();
-<<<<<<< HEAD
-					
-				
-=======
->>>>>>> 019f513b2843046d0b039fc01bf458a72865ce4f
 				}
 				?>
 		</div>

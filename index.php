@@ -30,7 +30,7 @@ $oLogin=new Login();
              <?php
 
                echo $oLogin->getNombreUsuario();
-            
+
              ?> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -204,7 +204,7 @@ $oLogin=new Login();
     $("#administracion").click(function(){
       $.get("Administracion/administracion.php", function(data){
         $("#vista").html(data);
-        $("#administacio").addClass("active");
+        $("#administracio").addClass("active");
         $("#bibliotec").removeClass("active");
         $("#asignatur").removeClass("active");
         $("#sugerenci").removeClass("active");

@@ -84,6 +84,7 @@ class Paginator {
         $end = ( ( $this->_page + $links ) < $last ) ? $this->_page + $links : $last;
 
         //debugging
+        /*
         echo '$total: '.$this->_total.' | '; //total rows
         echo '$row_start: '.$this->_row_start.' | '; //total rows
         echo '$limit: '.$this->_limit.' | '; //total rows per query
@@ -92,7 +93,7 @@ class Paginator {
         echo '$last: '.$last.' | '; //last page
         echo '$page: '.$this->_page.' | '; //current page
         echo '$links: '.$links.' <br /> '; //links
-
+        */
         //ul boot strap class - "pagination pagination-sm"
         $html = '<ul class="' . $list_class . '">';
 
