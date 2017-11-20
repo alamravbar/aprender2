@@ -174,7 +174,7 @@ $oLogin=new Login();
   });
 
   $("#biblioteca").click(function(){
-    $.get("biblioteca.php", function(data){
+    $.get("Biblioteca/biblioteca.php", function(data){
       $("#vista").html(data);
       $("#bibliotec").addClass("active");
       $("#asignatur").removeClass("active");

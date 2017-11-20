@@ -1,5 +1,5 @@
 <?php
-include_once "../../lib/PDOConfig.php";
+include_once "../lib/PDOConfig.php";
 ?>
 <html>
 <head></head>
@@ -11,13 +11,13 @@ include_once "../../lib/PDOConfig.php";
   //comprobamos que sea una petición ajax
   if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
   {
-
+//print_r($_SERVER);
 
 
     //obtenemos el archivo a subir
     $file = $_FILES['archivo']['name'];
 
-    $query=" select* from Documento where nombre='".$file."'";
+    $query=" select* from documento where nombre='".$file."'";
     //SELECT * FROM `archivos` WHERE imagen=
     $resultado=$base->query($query);
     $dato=$resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -27,7 +27,7 @@ include_once "../../lib/PDOConfig.php";
       echo "no se puede cargar archivo, ya se encuentra cargado!.";
 
     }else{
-
+//print_r($_POST);
       $etiquetas=$_POST['etiqueta'];
 
 
@@ -44,14 +44,15 @@ include_once "../../lib/PDOConfig.php";
       VALUES (null,'".$nombre."','files/".$file."','".$extension[1]."','".$_POST['comentario']."',".$_POST['categoria'].")";
       $res=$base->query($sql);
       if($res){
-        $sqlIngresado="select id_documento from Documento where nombre='".$nombre."'";
+        $sqlIngresado="select id_documento from documento where nombre='".$nombre."'";
         $resIngreso=$base->query($sqlIngresado);
         $datosIngreso=$resIngreso->fetchAll(PDO::FETCH_ASSOC);
-
+//print_r($datosIngreso);
 
 
 
         foreach($etiquetas as $elem){
+          
           $sqlEtiqueta=" ";
           $sqlEtiqueta="insert into contiene(id_documento,id_etiqueta)values(".$datosIngreso[0]['id_documento'].",".$elem.")";
           $resEtiqueta=$base->query($sqlEtiqueta);

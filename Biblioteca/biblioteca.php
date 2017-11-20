@@ -1,4 +1,3 @@
-
 <?php
 include_once "../lib/Login.php";
 
@@ -61,19 +60,20 @@ $oLogin=new Login();
 <br><br>
 <br><br>
 <?php } ?>
-<br>
-<script type="text/javascript" src="/js/jquery.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
-<script type="text/javascript" src="js/functions.js"></script>
+
+<!--<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+  -->
+  
 <script type="text/javascript">
-$.get("biblioteca-vista-archivos.php", function(data){
+$.get("pruebas/vista_archivos/vista-archivos.php", function(data){
   $(".show_archive").html(data);
 });
 $("#vistacarga").click(function(){
   $("#modalLogin").modal();
 });
-$('.openBtn').on('click',function(){
-  $('.modal-body').load('biblioteca-subir-archivos.php',function(){
+$(".openBtn").on('click',function(){
+  $('.modal-body').load('Biblioteca/subir-archivo.php',function(){
     $('#formSubirArchivo').modal({show:true});
   });
 });

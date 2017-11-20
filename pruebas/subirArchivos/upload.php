@@ -52,8 +52,10 @@ include_once "../../lib/PDOConfig.php";
 
 
         foreach($etiquetas as $elem){
+          print_r($elem);
+          exit();
           $sqlEtiqueta=" ";
-          $sqlEtiqueta="insert into contiene(id_documento,id_etiqueta)values(".$datosIngreso[0]['id_documento'].",".$elem.")";
+          $sqlEtiqueta="insert into contiene(id_documento,id_etiqueta)values(".$elem['id_documento'].",".$elem.")";
           $resEtiqueta=$base->query($sqlEtiqueta);
 
           if($resEtiqueta){
