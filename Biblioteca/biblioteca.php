@@ -60,10 +60,11 @@ $oLogin=new Login();
 <br><br>
 <br><br>
 <?php } ?>
-<br><script type="text/javascript" src="Biblioteca/functions.js"></script>
+
 <!--<script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript" src="../js/bootstrap.js"></script>
   -->
+  
 <script type="text/javascript">
 $.get("pruebas/vista_archivos/vista-archivos.php", function(data){
   $(".show_archive").html(data);

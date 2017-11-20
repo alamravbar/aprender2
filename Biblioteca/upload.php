@@ -27,7 +27,7 @@ include_once "../lib/PDOConfig.php";
       echo "no se puede cargar archivo, ya se encuentra cargado!.";
 
     }else{
-
+//print_r($_POST);
       $etiquetas=$_POST['etiqueta'];
 
 
@@ -47,14 +47,14 @@ include_once "../lib/PDOConfig.php";
         $sqlIngresado="select id_documento from documento where nombre='".$nombre."'";
         $resIngreso=$base->query($sqlIngresado);
         $datosIngreso=$resIngreso->fetchAll(PDO::FETCH_ASSOC);
-
+//print_r($datosIngreso);
 
 
 
         foreach($etiquetas as $elem){
           
           $sqlEtiqueta=" ";
-          $sqlEtiqueta="insert into contiene(id_documento,id_etiqueta)values(".$elem['id_documento'].",".$elem.")";
+          $sqlEtiqueta="insert into contiene(id_documento,id_etiqueta)values(".$datosIngreso[0]['id_documento'].",".$elem.")";
           $resEtiqueta=$base->query($sqlEtiqueta);
 
           if($resEtiqueta){
