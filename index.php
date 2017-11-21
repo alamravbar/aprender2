@@ -30,7 +30,7 @@ $oLogin=new Login();
              <?php
 
                echo $oLogin->getNombreUsuario();
-            
+
              ?> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -194,7 +194,7 @@ $oLogin=new Login();
       $("#vista").html(data);
       $("#sumat").addClass("active");
       $("#asignatur").removeClass("active");
-      $("#administacio").removeClass("active");
+      $("#administracio").removeClass("active");
       $("#sugerenci").removeClass("active");
       $("#plataform").removeClass("active");
       $("#bibliotec").removeClass("active");
@@ -204,7 +204,7 @@ $oLogin=new Login();
     $("#administracion").click(function(){
       $.get("Administracion/administracion.php", function(data){
         $("#vista").html(data);
-        $("#administacio").addClass("active");
+        $("#administracio").addClass("active");
         $("#bibliotec").removeClass("active");
         $("#asignatur").removeClass("active");
         $("#sugerenci").removeClass("active");
@@ -220,7 +220,7 @@ $oLogin=new Login();
         $("#bibliotec").removeClass("active");
         $("#asignatur").removeClass("active");
         $("#plataform").removeClass("active");
-        $("#administacio").removeClass("active");
+        $("#administracio").removeClass("active");
         $("#sumat").removeClass("active");
         $("#inicio").removeClass("active");
       });
@@ -232,7 +232,7 @@ $oLogin=new Login();
         $("#bibliotec").removeClass("active");
         $("#plataform").removeClass("active");
         $("#sugerenci").removeClass("active");
-        $("#administacio").removeClass("active");
+        $("#administracio").removeClass("active");
         $("#sumat").removeClass("active");
         $("#inicio").removeClass("active");
       });
@@ -244,7 +244,7 @@ $oLogin=new Login();
         $("#bibliotec").removeClass("active");
         $("#asignatur").removeClass("active");
         $("#sugerenci").removeClass("active");
-        $("#administacio").removeClass("active");
+        $("#administracio").removeClass("active");
         $("#sumat").removeClass("active");
         $("#inicio").removeClass("active");
       });
@@ -258,6 +258,7 @@ $oLogin=new Login();
         $("#plataform").removeClass("active");
         $("#bibliotec").removeClass("active");
         $("#sumat").removeClass("active");
+        $("#administracio").removeClass("active");
       });});
 
       </script>

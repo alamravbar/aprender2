@@ -47,12 +47,15 @@ class Paginator {
         //echo $query;die;
 
         $rs = $this->_conn->query( $query ) or die($this->_conn->error);
-
-        while ( $row = $rs->fetch_assoc() ) {
-            //store this array in $result->data below
-            $results[]  = $row;
+        //print_r($rs);
+        if ($rs->num_rows == 0){ //Realice esto para mandar mensaje de error en caso de no tener elementos
+          $results[] = -1;       //Sino tiene elementos va a mandar un -1, en caso contrario mandará los elementos
+        }else{
+          while ( $row = $rs->fetch_assoc() ) {
+              //store this array in $result->data below
+              $results[]  = $row;
+          }
         }
-
         //print_r($results);die;
 
         //return data as object, new stdClass() creates new empty object
@@ -84,6 +87,7 @@ class Paginator {
         $end = ( ( $this->_page + $links ) < $last ) ? $this->_page + $links : $last;
 
         //debugging
+        /*
         echo '$total: '.$this->_total.' | '; //total rows
         echo '$row_start: '.$this->_row_start.' | '; //total rows
         echo '$limit: '.$this->_limit.' | '; //total rows per query
@@ -92,7 +96,7 @@ class Paginator {
         echo '$last: '.$last.' | '; //last page
         echo '$page: '.$this->_page.' | '; //current page
         echo '$links: '.$links.' <br /> '; //links
-
+        */
         //ul boot strap class - "pagination pagination-sm"
         $html = '<ul class="' . $list_class . '">';
 
