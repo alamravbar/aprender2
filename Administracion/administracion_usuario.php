@@ -85,7 +85,7 @@ $opciones = $nombre.$email.$tipo_usuario.$habilitado;
               </a>
               <ul class="dropdown-menu">
                 <li><a href="#">Cambiar Contraseña</a></li>
-                <li><a href="cerrarLogin.php">Salir</a></li>
+                <li><a href="../cerrarLogin.php">Salir</a></li>
               </ul>
             </li>
           </ul>
