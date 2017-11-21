@@ -1,6 +1,38 @@
 <?php
 include_once('../lib/Login.php');
 $oLogin=new Login();
+$opciones = "";
+if(isset($_GET)){
+ $nombre =(isset($_GET['nombre_usuario'])?$_GET['nombre_usuario']:" 1 ");
+ $email =(isset($_GET['email'])?$_GET['email']:" 1 ");
+ if($nombre != ""){
+   $nombre = " AND nombre='".$nombre."'";
+ }else{
+   $nombre = "";
+ }
+if($email != ""){
+  $email = " AND mail='".$email."'";
+}else{
+  $email = "";
+}
+ $tipo_usuario = "";
+ if(isset($_GET["tipo_usuario"])){
+  $tip_usu = $_GET["tipo_usuario"];
+  foreach ($tip_usu as $tipo) {
+    $tipo_usuario .= " AND tipo_usuario=".$tipo;
+  }
+}else{
+  $tipo_usuario = "";
+}
+$habilitado = isset($_GET["habilitado"])?" AND habilitado=1 ":" AND habilitado=0 ";
+// if(isset($_GET["habilitado"]) && $_GET["habilitado"]=="1"){
+//  $habilitado = " AND habilitado = 1";
+// }else{
+//  $habilitado = "AND habilitado = 1";
+// }
+
+$opciones = $nombre.$email.$tipo_usuario.$habilitado;
+}
  ?>
 
 <!DOCTYPE html>
@@ -67,7 +99,7 @@ $oLogin=new Login();
     <p class="intros" style="text-align:center;">
       ¡En esta página podrás modificar a los usuarios del sitio!
     </p>
-      <form method="post" class="form-inline form1">
+      <form method="get" class="form-inline form1" action="administracion_usuario.php">
         <div class="form-group">
           <label for="nombre_usuario"></label>
           <input type="text" name="nombre_usuario" placeholder="Nombre de Usuario" class="form-control" />
@@ -77,20 +109,20 @@ $oLogin=new Login();
           <input type="email" name="email" placeholder="Email" class="form-control" >
         </div>
 
-        <div class="form-group" style="border:solid 0.5px gray;padding:4px;border-radius:5px;">
+        <div class="form-group" style="border:solid 0.5px #b4b6bf;padding:4px;border-radius:5px;">
             Tipo de Usuario:
-            Alumno<input type="checkbox" value="alumno">
-            Docente<input type="checkbox" value="docente">
-            Moderador<input type="checkbox" value="moderador">
-            Administrador<input type="checkbox" value="administrador">
+            Alumno<input type="checkbox" name="tipo_usuario[]" value="1">
+            Docente<input type="checkbox" name="tipo_usuario[]"  value="2">
+            Moderador<input type="checkbox" name="tipo_usuario[]"  value="3">
+            Administrador<input type="checkbox" name="tipo_usuario[]"  value="4">
         </div>
 
 
         <div class="checkbox">
-            <label><input type="checkbox" value="habilitado"> Habilitado</label>
+            <label>Habilitado<input type="checkbox" name="habilitado" value="1"></label>
         </div>
 
-        <button type="button" class="btn btn-default">Buscar</button>
+        <button type="submit" class="btn btn-default">Buscar</button>
       </form>
       <?php
       include_once 'paginacion.php';
@@ -106,8 +138,7 @@ $oLogin=new Login();
       $mysqli = new mysqli($host,$user,$pass,$db);
 
       //DO NOT limit this query with LIMIT keyword, or...things will break!
-      $query = "SELECT * FROM usuario";
-
+      $query = "SELECT * FROM usuario WHERE 1 ".$opciones;
       //these variables are passed via URL
       $limit = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 5; //movies per page
       $page = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1; //starting page
@@ -120,7 +151,7 @@ $oLogin=new Login();
 
       //print_r($results->data);die; //array
 
-
+      if($results->data[0] != -1){ //Preguntamos si viene algo en la consulta sino mostrara un mensaje de "NADA QUE MOSTRAR"
       ?>
       <div class="paginas">
         <?php
@@ -148,6 +179,7 @@ $oLogin=new Login();
 
               <?php
               //store in $movie variable for easier reading
+
               $usuario = $results->data[$p];
 
               echo "<tr>";
@@ -236,4 +268,7 @@ $oLogin=new Login();
     </body>
 </html>
 <?php
+}else{
+  echo "<p class='intros'style='text-align:center;'><strong> NADA QUE MOSTRAR</strong></p>";
+}
 } ?>

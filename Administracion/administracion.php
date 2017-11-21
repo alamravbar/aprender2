@@ -35,13 +35,28 @@
       <div class="flex-item">
         <h3 style="text-align:left">Usuarios</h3>
         <ul>
-          <li><a href="Administracion/administracion_usuario.php">Administración de Usuarios</a></li>
+          <li><a href="Administracion/administracion_usuario.php">Administrar Usuarios</a></li>
         </ul>
       </div>
       <div class="flex-item">
-        <h3 style="text-align:left">Usuarios</h3>
+        <h3 style="text-align:left">Niveles</h3>
         <ul>
-          <li><a href="Administracion/administracion_usuario.php">Administración de Usuarios</a></li>
+          <li><a href="Administracion/administracion_usuario.php">Crear Nivel</a></li>
+          <li><a href="Administracion/administracion_usuario.php">Administrar Nivel</a></li>
+        </ul>
+      </div>
+      <div class="flex-item">
+        <h3 style="text-align:left">Asignaturas</h3>
+        <ul>
+          <li><a href="Administracion/administracion_usuario.php">Crear Asignatura</a></li>
+          <li><a href="Administracion/administracion_usuario.php">Administrar Asignatura</a></li>
+        </ul>
+      </div>
+      <div class="flex-item">
+        <h3 style="text-align:left">Curso</h3>
+        <ul>
+          <li><a href="Administracion/administracion_usuario.php">Crear Curso</a></li>
+          <li><a href="Administracion/administracion_usuario.php">Administrar Curso</a></li>
         </ul>
       </div>
     </div>

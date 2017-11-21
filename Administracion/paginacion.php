@@ -47,12 +47,15 @@ class Paginator {
         //echo $query;die;
 
         $rs = $this->_conn->query( $query ) or die($this->_conn->error);
-
-        while ( $row = $rs->fetch_assoc() ) {
-            //store this array in $result->data below
-            $results[]  = $row;
+        //print_r($rs);
+        if ($rs->num_rows == 0){ //Realice esto para mandar mensaje de error en caso de no tener elementos
+          $results[] = -1;       //Sino tiene elementos va a mandar un -1, en caso contrario mandará los elementos
+        }else{
+          while ( $row = $rs->fetch_assoc() ) {
+              //store this array in $result->data below
+              $results[]  = $row;
+          }
         }
-
         //print_r($results);die;
 
         //return data as object, new stdClass() creates new empty object
