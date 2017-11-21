@@ -28,7 +28,11 @@
 					exit();
 				}else{
 					echo $oLogin->getError();
-				}
+
+					}
+
+				
+
 				?>
 		</div>
 </body>

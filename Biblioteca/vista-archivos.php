@@ -18,7 +18,7 @@
 
  <?php
 
-include_once '../../lib/PDOConfig.php';
+include_once '../lib/PDOConfig.php';
 $base = new PDOConfig();
 $sql=" select * from documento ";
 
@@ -27,20 +27,21 @@ $resultado=$base->query($sql);
 $datos = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
 
-$mostrar="<div class='row' >";
-$mostrar.="<div class='col-md-4'></div>";
+$mostrar=" ";
 
-$mostrar.="<div class='col-md-4'><ul class='list-group'>";
+
+$mostrar.="<ul class='list-group'>";
 //print_r($datos);
 //exit();
 foreach($datos as $elem){
     
     //print_r($extension);
      //<a href="#" class="list-group-item">
-    $mostrar.="<img src='imagen/".$elem['extension'].".jpg' class='img-rounded' align='center' width='68' height='68'> <a href='Biblioteca/".$elem['ruta']."' class='list-group-item'> ".$elem['nombre']."</a>";
+    //$mostrar.="<a href='".$elem['ruta']."' class='list-group-item'><img src='Biblioteca/imagen/".$elem['extension'].".jpg' class='img-rounded' align='center' width='68' height='68'>".$elem['nombre'].".".$elem['extension']."</a>";
+    $mostrar.="<li class='list-group-item'><a href='Biblioteca/".$elem['ruta']."' class='text-justify'><img src='Biblioteca/imagen/".$elem['extension'].".jpg' class='media-object' style='width:60px'>".$elem['nombre'].".".$elem['extension']."</a></li>";
 //<img src='imagen/".$elem['extension'].".jpg' class='img-rounded' align='center' width='68' height='68'>;
 }
-$mostrar.="</ul></div></div>";
+$mostrar.="</ul>";$mostrar.="";
 echo $mostrar;
 
 

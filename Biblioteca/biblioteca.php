@@ -66,7 +66,7 @@ $oLogin=new Login();
   -->
   
 <script type="text/javascript">
-$.get("pruebas/vista_archivos/vista-archivos.php", function(data){
+$.get("Biblioteca/vista-archivos.php", function(data){
   $(".show_archive").html(data);
 });
 $("#vistacarga").click(function(){
