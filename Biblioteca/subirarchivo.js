@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     $(".messages").hide();
     //queremos que esta variable sea global
     var fileExtension = "";
@@ -21,13 +20,13 @@ $(document).ready(function(){
     });
 
     //al enviar el formulario
-    $('button').click(function(){
+    $('#subir_arch').click(function(){
         //información del formulario
         var formData = new FormData($(".formulario")[0]);
-        var message = ""; 
-        //hacemos la petición ajax  
+        var message = "";
+        //hacemos la petición ajax
         $.ajax({
-            url: 'Biblioteca/upload.php',  
+            url: 'Biblioteca/upload.php',
             type: 'POST',
             // Form data
             //datos del formulario
@@ -39,11 +38,11 @@ $(document).ready(function(){
             //mientras enviamos el archivo
            beforeSend: function(){
                 message = $("<span class='before'>Subiendo el archivo, por favor espere...</span>");
-                showMessage(message)        
+                showMessage(message)
             },
             //una vez finalizado correctamente
             success: function(data){
-                
+
                 message = $("<span class='success'>Se ha subido correctamente el archivo</span>"+data);
                showMessage(message);
                if(isImage(fileExtension))
@@ -60,7 +59,7 @@ $(document).ready(function(){
     });
 })
 
-//como la utilizamos demasiadas veces, creamos una función para 
+//como la utilizamos demasiadas veces, creamos una función para
 //evitar repetición de código
 function showMessage(message){
     $(".messages").html("").show();
@@ -72,7 +71,7 @@ function showMessage(message){
 function isImage(extension)
 {
     //alert(extension.toLowerCase());
-    switch(extension.toLowerCase()) 
+    switch(extension.toLowerCase())
     {
         case 'pdf':
             return true;
@@ -86,6 +85,6 @@ function isImage(extension)
         default:
             return false;
         break;
-       
+
     }
 }
