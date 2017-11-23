@@ -49,9 +49,9 @@ $oLogin=new Login();
           <li id="bibliotec"><a href="#" id="biblioteca">Biblioteca</a></li>
           <li id="asignatur"><a href="#" id="asignatura">Asignatura</a></li>
           <li id="sugerenci"><a href="#" id="sugerencia">Sugerencias</a></li>
-          <li id="plataform"><a href="#" id="plataforma">Plataforma</a></li>
           <li id="sumat"><a href="#" id="sumate">Sumate</a></li>
           <li id="administracio"><a href="#" id="administracion">Administración</a></li>
+          <li id="plataform"><a href="Plataforma/index.php" id="plataforma">Plataforma</a></li>
         </ul>
       </div>
     </nav>
@@ -237,18 +237,7 @@ $oLogin=new Login();
         $("#inicio").removeClass("active");
       });
     });
-    $("#plataforma").click(function(){
-      $.get("Plataforma/plataforma.php", function(data){
-        $("#vista").html(data);
-        $("#plataform").addClass("active");
-        $("#bibliotec").removeClass("active");
-        $("#asignatur").removeClass("active");
-        $("#sugerenci").removeClass("active");
-        $("#administracio").removeClass("active");
-        $("#sumat").removeClass("active");
-        $("#inicio").removeClass("active");
-      });
-    });
+
     $("#inicio").click(function(){
       $.get("Inicio/inicio.php", function(data){
         $("#vista").html(data);
