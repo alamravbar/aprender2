@@ -1,7 +1,7 @@
 <?php
 include_once('lib/Login.php');
 $oLogin=new Login();
- //echo 'Rol: '.$oLogin->getRol()." Nombre usuario: ".$oLogin->getNombreUsuario();
+//echo 'Rol: '.$oLogin->getRol()." Nombre usuario: ".$oLogin->getNombreUsuario();
 ?>
 <html>
 <head>
@@ -23,26 +23,25 @@ $oLogin=new Login();
         <ul class="nav navbar-nav navbar-right">
           <?php
           if(!$oLogin->activa()){ ?>
-          <li><a href="#" id="login"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
+            <li><a href="#" id="login"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
           <?php }else{ ?>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-             <?php
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <?php
+                 echo $oLogin->getNombreUsuario();
+                ?> <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Cambiar Contraseña</a></li>
+                <li><a href="cerrarLogin.php">Salir</a></li>
+              </ul>
+            </li>
+            <?php
+            }
+            ?>
+          </ul>
 
-               echo $oLogin->getNombreUsuario();
 
-             ?> <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Cambiar Contraseña</a></li>
-              <li><a href="cerrarLogin.php">Salir</a></li>
-            </ul>
-          </li>
-        </ul>
-
-        <?php     }
-
-             ?>
 
         <ul class="nav navbar-nav navbar-right">
           <li class="active"id="inicio"><a href="#">Inicio</a></li>
@@ -184,7 +183,7 @@ $oLogin=new Login();
       $("#sumat").removeClass("active");
       $("#inicio").removeClass("active");
     });
-     // Interceptamos el evento submit
+    // Interceptamos el evento submit
 
 
 
