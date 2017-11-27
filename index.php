@@ -252,6 +252,7 @@ $oLogin=new Login();
       });});
 
       </script>
+      <?php if($oLogin->activa()){  ?>
       <script>
           (function(d, w, c) {
               w.ChatraID = 'yYyHuG5QqE2c552kA';
@@ -265,5 +266,6 @@ $oLogin=new Login();
               if (d.head) d.head.appendChild(s);
           })(document, window, 'Chatra');
       </script>
+    <?php } ?>
     </body>
     </html>

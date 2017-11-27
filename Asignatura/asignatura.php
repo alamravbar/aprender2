@@ -16,7 +16,7 @@ if($resultado){
   $item_cursos ="";
   foreach ($datos as $cursos) {
     $color =random_color();
-    echo $cursos['cat_id']." - ".$cursos['title'];
+    //echo $cursos['cat_id']." - ".$cursos['title'];
     $titulo = $cursos['title'];
     $palabras = explode(" ", $titulo);
     $primeras_letras = "";
@@ -38,7 +38,7 @@ if($resultado){
   $item_categorias ="";
   foreach ($datos as $nivel) {
     $color =random_color();
-    echo " | ". $nivel['cat_id']." - ".$nivel['cat_name'];
+    //echo " | ". $nivel['cat_id']." - ".$nivel['cat_name'];
     $titulo = $nivel['cat_name'];
     $palabras = explode(" ", $titulo);
     $primeras_letras = "";
@@ -120,18 +120,54 @@ if($resultado){
           background-color:blue;
           text-align: center;
         }
+        .nada{
+          background-color: orange;
+          padding-top:26px;
+          width: 30%;
+          height: 90px;
+          text-align: center;
+          font-size: 150%;
+        }
     </style>
   </head>
+
   <body>
+    <div class="intros">
+      ¡¡Bienvenido a Asignaturas!! En esta sección podrás ver todas las niveles, categorias y cursos que poseemos
+    </div>
+    <h3 style="text-align:center;">Niveles</h3>
     <div class="flex-container-nivel">
       <?php echo $item_categorias; ?>
     </div>
-    <div class="flex-container-asig">
-      <?php echo $item_cursos; ?>
+    <div class="lienzo" id="lienzo">
+
     </div>
+    <div class="lienzo2" id="lienzo2">
+
+    </div>
+    <!-- Modal del curso-->
+    <div class="modal fade" id="curso" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class='modal-body' id="contenido_curso">
+
+        </div>
+        <div class='modal-footer'>
+          <button type='button' class="btn btn-primarys" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
     <script type="text/javascript">
       $(".nivel").click(function(){
-        alert("toco un nivel: "+$(this).data("id"));
+        $("#lienzo2").html("");
+        console.log("Entro en .nivel");
+        var cat_id = $(this).data("id");
+        //alert("toco un nivel: "+$(this).data("id"));
+        $.get("Asignatura/obtener_asign_o_cursos.php",{cat_id: cat_id },function(data){
+          $("#lienzo").html(data);
+
+        });
       });
     </script>
   </body>
