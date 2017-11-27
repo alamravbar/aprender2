@@ -125,8 +125,11 @@ $oLogin=new Login();
 <?php }else{
   ?>
   <p class="intros">
-    Para ver más ingrese a su cuente o registrese<br><br>
-
+    Para ver más
+    <a href="#" class="login">Ingrese</a>
+    a su cuente o
+    <a href="#" class="sumate">Registrese</a>
+    <br>
   </p>
   <br><br>
   <br><br>
@@ -153,6 +156,20 @@ $(".openBtn").on('click',function(){
 //     $('#formSubirArchivo').modal({show:true});
 //   });
 // });
+$(".sumate").click(function(){
+  $.get("Sumate/sumate.php", function(data){
+    $("#vista").html(data);
+    $("#sumat").addClass("active");
+    $("#asignatur").removeClass("active");
+    $("#administracio").removeClass("active");
+    $("#sugerenci").removeClass("active");
+    $("#plataform").removeClass("active");
+    $("#bibliotec").removeClass("active");
+    $("#inicio").removeClass("active");
+  });});
+  $(".login").click(function(){
+    $("#modalLogin").modal();
+  });
 </script>
 
 </body>

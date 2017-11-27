@@ -6,12 +6,12 @@ if(isset($_GET)){
  $nombre =(isset($_GET['nombre_usuario'])?$_GET['nombre_usuario']:" 1 ");
  $email =(isset($_GET['email'])?$_GET['email']:" 1 ");
  if($nombre != ""){
-   $nombre = " AND nombre='".$nombre."'";
+   $nombre = " AND '".$nombre."'";
  }else{
    $nombre = "";
  }
 if($email != ""){
-  $email = " AND mail='".$email."'";
+  $email = " AND '".$email."'";
 }else{
   $email = "";
 }
@@ -32,6 +32,9 @@ $habilitado = isset($_GET["habilitado"])?" AND habilitado=1 ":" AND habilitado=0
 // }
 
 $opciones = $nombre.$email.$tipo_usuario.$habilitado;
+$limit = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 5; //movies per page
+$page = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1; //starting page
+$links = 5;
 }
  ?>
 
@@ -119,7 +122,7 @@ $opciones = $nombre.$email.$tipo_usuario.$habilitado;
 
 
         <div class="checkbox">
-            <label>Habilitado<input type="checkbox" name="habilitado" value="1"></label>
+            <label>Habilitado<input type="checkbox" name="habilitado" value="1" checked></label>
         </div>
 
         <button type="submit" class="btn btn-default">Buscar</button>
@@ -139,10 +142,11 @@ $opciones = $nombre.$email.$tipo_usuario.$habilitado;
 
       //DO NOT limit this query with LIMIT keyword, or...things will break!
       $query = "SELECT * FROM usuario WHERE 1 ".$opciones;
+      echo $query;
       //these variables are passed via URL
-      $limit = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 5; //movies per page
-      $page = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1; //starting page
-      $links = 5;
+      // $limit = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 5; //movies per page
+      // $page = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1; //starting page
+      // $links = 5;
 
       $paginator = new Paginator( $mysqli, $query ); //__constructor is called
       $results = $paginator->getData( $limit, $page );

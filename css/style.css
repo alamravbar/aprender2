@@ -105,6 +105,7 @@ fieldset{
 }
 /** P como recorte de revista: */
 .intros{
+  text-align: center;
   margin: 10px;
   padding: 10px;
   background-color: #7e8ad3;
