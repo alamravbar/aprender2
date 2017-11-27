@@ -49,8 +49,10 @@ $oLogin=new Login();
           <li id="asignatur"><a href="#" id="asignatura">Asignatura</a></li>
           <li id="sugerenci"><a href="#" id="sugerencia">Sugerencias</a></li>
           <li id="sumat"><a href="#" id="sumate">Sumate</a></li>
-          <li id="administracio"><a href="#" id="administracion">Administración</a></li>
           <li id="plataform"><a href="Plataforma/index.php" id="plataforma">Plataforma</a></li>
+          <?php if($oLogin->getRol()==4){ ?>
+            <li id="administracio"><a href="#" id="administracion">Administración</a></li>
+          <?php } ?>
         </ul>
       </div>
     </nav>
