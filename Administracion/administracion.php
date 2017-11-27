@@ -201,7 +201,7 @@ if($resultado){
           </div>
 
           <div class="modal-body" style="padding:40px 50px;">
-            <form role="form" id="form-curso" method="post">
+            <form role="form" id="form_curso" method="post">
 
               <div class="form-group">
                 <label for="nombre_curso">Nombre de Curso</label>
@@ -275,6 +275,7 @@ if($resultado){
           function(data){
               alert(data);
               $( "#div-niveles" ).load( "Administracion/Nivel/obtener_niveles.php" );
+              $("#form_nivel")[0].reset();
           });
         }
         return sale;
@@ -307,6 +308,7 @@ if($resultado){
           function(data){
               alert(data);
               $( "#div-asignatura").load( "Administracion/Asignatura/obtener_asignaturas.php" );
+              $("#form_asignatura")[0].reset();
           });
         }
         return sale;
@@ -338,7 +340,7 @@ if($resultado){
           ,
           function(data){
               alert(data);
-
+              $("#form_curso")[0].reset();
           });
         }
         return sale;
