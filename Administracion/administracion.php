@@ -22,7 +22,7 @@ $resultado=$base->query($sql);
 if($resultado){
   $datos=$resultado->fetchAll(PDO::FETCH_ASSOC);
   $asignaturas = "<div class = 'form-group'>";
-  $asignaturas .= "<select class='form-control' id='asignatura'>";
+  $asignaturas .= "<select class='form-control' id='id_asignatura' name='id_asignatura'>";
   foreach ($datos as $asignatura) {
     $asignaturas.="<option value='".$asignatura['id_asignatura']."'>".$asignatura['nombre']."</option>";
   }
@@ -201,27 +201,33 @@ if($resultado){
           </div>
 
           <div class="modal-body" style="padding:40px 50px;">
-            <form role="form" id="curso" name="curso" method="post">
+            <form role="form" id="form-curso" method="post">
 
               <div class="form-group">
-                <label for="nombre_asignatura">Nombre de Curso</label>
-                <input type="text" class="form-control" id="nombre_asignatura" name="nombre_asignatura">
+                <label for="nombre_curso">Nombre de Curso</label>
+                <input type="text" class="form-control" id="nombre_curso" name="nombre_curso">
+                <div class="error" id="nombre_curso_error">
+                  El campo nombre es obligatorio
+                </div>
               </div>
 
               <div class="form-group">
-                <label for="descripcion_asignatura">Link de Curso</label>
-                <input type="text" class="form-control" id="link" name="link">
+                <label for="link-curso">Link de Curso</label>
+                <input type="text" class="form-control" id="link_curso" name="link_curso">
+                <div class="error" id="link_curso_error">
+                  El campo link es obligatorio
+                </div>
               </div>
 
               <div class="form-group">
-                <label for="id_nivel">Asignatura al que pertenece</label>
+                <label for="asignatura">Asignatura al que pertenece</label>
                 <div class="div-asignaturas">
                   <?php echo $asignaturas; ?>
                 </div>
 
               </div>
 
-              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Agregar</button>
+              <button type="button" class="btn btn-success btn-block" id="button_curso"><span class="glyphicon glyphicon-off"></span> Agregar</button>
               <button type="submit" class="btn btn-danger btn-block" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
 
             </form>
@@ -305,7 +311,38 @@ if($resultado){
         }
         return sale;
       });
+      $("#button_curso").click(function(){
+        var nombre= $("#nombre_curso").val();
+        var link = $("#link_curso").val();
+        var id_asignatura = $("#id_asignatura").val();
+        console.log("id asignatura: "+ id_asignatura);
+        var sale = true;
+        if(nombre != ""){
+          $("#nombre_curso_error").hide();
+        }else{
+          $("#nombre_curso_error").show();
+          $("#nombre_curso").focus();
+          sale = false;
+        }
+        if(link != ""){
+          $("#link_curso_error").hide();
+        }else{
+          $("#link_curso_error").show();
+          $("#link_curso").focus();
+          sale = false;
+        }
+        if(sale){
+          alert("Curso Agregado Normalemente");
+          $.post("Administracion/Curso/crear_curso.php",
+            {nombre_curso:nombre, link_curso:link , id_asignatura:id_asignatura}
+          ,
+          function(data){
+              alert(data);
 
+          });
+        }
+        return sale;
+      });
 
     });
 
