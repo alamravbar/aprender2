@@ -1,6 +1,5 @@
 <?php
 include_once "../lib/PDOConfig.php";
-
 ?>
 <html>
 <head></head>
@@ -25,7 +24,7 @@ include_once "../lib/PDOConfig.php";
       echo "Error en hacer petición al servidor sobre si se encuentra o no el archivo ";
     }else{
       $dato=$resultado->rowCount(PDO::FETCH_ASSOC);
-      //echo "------------DATO = ".$dato."---------------<br>";
+      echo "------------DATO = ".$dato."---------------<br>";
       if($dato>0){
         echo "no se puede cargar archivo, ya se encuentra cargado!";
       }else{
@@ -46,12 +45,13 @@ include_once "../lib/PDOConfig.php";
         if($res){
           $sqlIngresado="select id_documento from documento where nombre='".$nombre."'";
           $resIngreso=$base->query($sqlIngresado);
+          $id_documento = $base->lastInsertId();
           if($resIngreso){
             $datosIngreso=$resIngreso->fetchAll(PDO::FETCH_ASSOC);
             //print_r($datosIngreso);
+            $sqlEtiqueta=" ";
             foreach($etiquetas as $elem){
-              $sqlEtiqueta=" ";
-              $sqlEtiqueta="insert into contiene(id_documento,id_etiqueta)values(".$datosIngreso[0]['id_documento'].",".$elem.")";
+              $sqlEtiqueta="insert into contiene(id_documento,id_etiqueta)values(".$id_documento.",".$elem.")";
               $resEtiqueta=$base->query($sqlEtiqueta);
               if($resEtiqueta){
                 echo "ingresado";
