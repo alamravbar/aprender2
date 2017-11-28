@@ -16,13 +16,15 @@ $(document).ready(function(){
         //obtenemos el tipo de archivo image/png ejemplo
         var fileType = file.type;
         //mensaje con la información del archivo
+        console.log("ingreso al :file");
         showMessage("<span class='info'>Archivo para subir: "+fileName+", peso total: "+fileSize+" bytes.</span>");
     });
 
     //al enviar el formulario
     $('#subir_arch').click(function(){
+      console.log("ingreso a subir archivo");
         //información del formulario
-        var formData = new FormData($(".formulario")[0]);
+        var formData = new FormData($("#form_subir")[0]);
         var message = "";
         //hacemos la petición ajax
         $.ajax({
@@ -80,7 +82,7 @@ function isImage(extension)
             return true;
             break;
         case 'jpg':
-        return false;
+        return true;
         break;
         default:
             return false;

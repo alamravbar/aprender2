@@ -1,7 +1,6 @@
 <?php
 include_once "../lib/PDOConfig.php";
 $base=new PDOConfig();
-
 $sql="select * from categoria";
 $resultado=$base->query($sql);
 if(!$resultado){
@@ -38,7 +37,11 @@ if(!$resultado){
   <head>
     <meta charset="utf-8">
     <title>Bibliteca</title>
-
+    <style media="screen">
+      .intros{
+        margin-left: -19px;
+      }
+    </style>
   </head>
   <body>
 
@@ -82,15 +85,14 @@ $oLogin=new Login();
         <h4 class="modal-title">Subir Archivos</h4>
       </div>
       <div class="modal-body">
-
           <!-- Content here -->
 
-          <form enctype="multipart/form-data" class="formulario">
+          <form enctype="multipart/form-data" class="formulario" id="form_subir" method="post">
             <div class="form-group">
-              <label for="imagen">Seleccione un archivo..</label>
+                <label for="imagen">Seleccione un archivo..</label>
               <input type="file" class="form-control-file formulario" id="imagen" name="archivo">
             </div>
-
+            <input type="hidden" class="form-control-file formulario" id="nombre_usuario" name="nombre_usuario" value="<?php echo $oLogin->getNombreUsuario();?>">
             <div class="form-group">
               <label for="comentario">Descripcion</label>
               <textarea class="form-control" id="comentario" name="comentario" rows="3" ></textarea>
@@ -105,14 +107,15 @@ $oLogin=new Login();
             </div>
 
             <?php echo $comboetiqueta;?>
+            <button id="subir_arch">Subir Archivo</button>
       </form>
-      </div>
-      <button id="subir_arch">Subir Archivo</button>
 
+      </div>
       <!--div para visualizar mensajes-->
       <div class="messages"></div><br /><br />
       <!--div para visualizar en el caso de imagen-->
       <div class="showImage"></div>
+
 
       </div>
 
