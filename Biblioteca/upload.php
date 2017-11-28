@@ -1,5 +1,6 @@
 <?php
 include_once "../lib/PDOConfig.php";
+
 ?>
 <html>
 <head></head>
@@ -24,11 +25,12 @@ include_once "../lib/PDOConfig.php";
       echo "Error en hacer petición al servidor sobre si se encuentra o no el archivo ";
     }else{
       $dato=$resultado->rowCount(PDO::FETCH_ASSOC);
-      echo "------------DATO = ".$dato."---------------<br>";
+      //echo "------------DATO = ".$dato."---------------<br>";
       if($dato>0){
         echo "no se puede cargar archivo, ya se encuentra cargado!";
       }else{
         //print_r($_POST);
+        $nombre = $_POST['nombre_usuario'];
         $etiquetas=$_POST['etiqueta'];
         $descripcion = $_POST['comentario'];
         $categoria = $_POST['categoria'];
@@ -38,7 +40,7 @@ include_once "../lib/PDOConfig.php";
         $x=".".$extension[1];
         $nombre=basename($file,$x);
         // echo "nombre:".$nombre."  extencion".$x;
-        echo "-------------INGRESO AL INSERTAR DOCU------------<br>";
+        //echo "-------------INGRESO AL INSERTAR DOCU------------<br>";
         $sql="insert into documento(id_documento, nombre, ruta, extension, descripcion, id_categoria)
         VALUES (null,'".$nombre."','files/".$file."','".$extension[1]."','".$descripcion."',".$categoria.")";
         $res=$base->query($sql);
@@ -80,7 +82,7 @@ include_once "../lib/PDOConfig.php";
       }
     }
   }else{
-    throw new Exception("Error Processing Request", 1);
+    //throw new Exception("Error Processing Request", 1);
   }
 
   ?>
