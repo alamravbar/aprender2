@@ -1,14 +1,11 @@
 <?php
 include_once "../lib/PDOConfig.php";
-
 ?>
 <html>
 <head></head>
 <body>
   <?php
-
   $base=new PDOConfig();
-
   //comprobamos que sea una petición ajax
   if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
   {
@@ -25,13 +22,12 @@ include_once "../lib/PDOConfig.php";
       echo "Error en hacer petición al servidor sobre si se encuentra o no el archivo ";
     }else{
       $dato=$resultado->rowCount(PDO::FETCH_ASSOC);
-      //echo "------------DATO = ".$dato."---------------<br>";
+      echo "------------DATO = ".$dato."---------------<br>";
       if($dato>0){
         echo "no se puede cargar archivo, ya se encuentra cargado!";
       }else{
         //print_r($_POST);
-        $nombre = $_POST['nombre_usuario'];
-        $etiquetas=$_POST['etiqueta'];
+        $etiquetas=isset($_POST['etiqueta'])?($_POST['etiqueta']):"";
         $descripcion = $_POST['comentario'];
         $categoria = $_POST['categoria'];
         //  echo "no encontrado\n";  //$sql="insert into archivos (id,info,imagen) VALUES(null,'".$file['$file']."','".."')"
@@ -40,34 +36,32 @@ include_once "../lib/PDOConfig.php";
         $x=".".$extension[1];
         $nombre=basename($file,$x);
         // echo "nombre:".$nombre."  extencion".$x;
-        echo "-------------INGRESO AL INSERTAR DOCU------------<br>";
+        //echo "-------------INGRESO AL INSERTAR DOCU------------<br>";
         $sql="insert into documento(id_documento, nombre, ruta, extension, descripcion, id_categoria)
         VALUES (null,'".$nombre."','files/".$file."','".$extension[1]."','".$descripcion."',".$categoria.")";
         $res=$base->query($sql);
+        $id_documento = $base->lastInsertId();
         if($res){
-          $sqlIngresado="select id_documento from documento where nombre='".$nombre."'";
-          $resIngreso=$base->query($sqlIngresado);
-          if($resIngreso){
-            $datosIngreso=$resIngreso->fetchAll(PDO::FETCH_ASSOC);
-            //print_r($datosIngreso);
+          $sqlEtiqueta=" ";
+          if($etiquetas !=""){
             foreach($etiquetas as $elem){
-              $sqlEtiqueta=" ";
-              $sqlEtiqueta="insert into contiene(id_documento,id_etiqueta)values(".$datosIngreso[0]['id_documento'].",".$elem.")";
+              $sqlEtiqueta="insert into contiene(id_documento,id_etiqueta)values(".$id_documento.",".$elem.")";
               $resEtiqueta=$base->query($sqlEtiqueta);
-              if($resEtiqueta){
-                echo "ingresado";
-              }
             }
-          }else{
-            echo "Error en la consulta al select";
+            echo "¡Archivo Insertado!";
           }
-
+          // $sqlIngresado="select id_documento from documento where nombre='".$nombre."'";
+          // $resIngreso=$base->query($sqlIngresado);
+          //  if($resIngreso){
+          //   $datosIngreso=$resIngreso->fetchAll(PDO::FETCH_ASSOC);
+          //print_r($datosIngreso);
+          // }else{
+          //   echo "Error en la consulta al select";
+          // }
         }else{
           echo "Error en el ingreso en la base de datos";
         }
-
       }
-
       //comprobamos si existe un directorio para subir el archivo
       //si no es así, lo creamos
       if(!is_dir("files/")) {
@@ -82,9 +76,8 @@ include_once "../lib/PDOConfig.php";
       }
     }
   }else{
-    //throw new Exception("Error Processing Request", 1);
+    throw new Exception("Error Processing Request", 1);
   }
-
   ?>
 </body>
 </html>
