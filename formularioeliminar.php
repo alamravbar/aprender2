@@ -12,9 +12,9 @@ include_once "lib/PDOConfig.php";
     if ($resultado){
         $datos=$resultado->fetchAll(PDO::FETCH_ASSOC);
                 foreach($datos as $elem){
-            $comboselect.=" <option value=".$elem['id_categoria'].">".$elem['nombre']."</option>";
+            $comboselect.=" <h1>Desea eliminar ".$elem['nombre']."</h1>";
             }
-            $comboselect.="</select>";
+            $comboselect.="";
         
     } else {
         echo "error al generar combo";
@@ -34,7 +34,13 @@ include_once "lib/PDOConfig.php";
 <html>
     <head></head>
     <body>
+
+    <div>
+    <? echo $comboselect;?>
+    
+    </div>
         <form action="modificar.php" method="get" id="form" name="form">
+    
          <input type="text" name="id" id="id" value='"<?php echo $id;?>"'>
             <label for="nombre">Nombre: </label>
             <input type="text" id="nombre" name="nombre" value= '"<?php echo $datosdocumento[0]['nombre'];?>"' disabled><br>

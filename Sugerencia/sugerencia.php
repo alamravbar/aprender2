@@ -1,4 +1,8 @@
+<?php
+echo '<a data-pin-do="embedUser" data-pin-lang="es" data-pin-board-width="400" data-pin-scale-height="300" data-pin-scale-width="300" href="https://ar.pinterest.com/usarioprueba/"></a>';
+?>
 <!DOCTYPE html>
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -27,7 +31,7 @@
         <!--<button class="btn btn-success" type="button" onload="getpinterest()"><span class="glyphicon glyphicon-search"></span>&nbsp;Buscar</button>-->
                
  <!--<a data-pin-do="embedUser" data-pin-lang="es" data-pin-board-width="320" data-pin-scale-height="256" data-pin-scale-width="200" href="https://ar.pinterest.com/usarioprueba/ingles/pin"></a>-->
-                  <a data-pin-do="embedBoard" data-pin-lang="es" data-pin-board-width="400" data-pin-scale-height="300" data-pin-scale-width="300" href="https://ar.pinterest.com/usarioprueba/ingles/pin"></a>
+                  <a data-pin-do="embedUser" data-pin-lang="es" data-pin-board-width="400" data-pin-scale-height="300" data-pin-scale-width="300" href="https://ar.pinterest.com/usarioprueba/"></a>
 
               
           

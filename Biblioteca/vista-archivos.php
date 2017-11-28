@@ -48,6 +48,7 @@ if(!$resultado){
           $etiquetas .=$etiqueta['nombre'].",";
       }
     }
+    
 
       $mostrar .= "<tr>";
       $mostrar .= "<td>";
@@ -60,7 +61,7 @@ if(!$resultado){
       $mostrar .= $etiquetas;
       $mostrar .= "</td>";
       $mostrar .= "<td style='font-size:15px;'>";
-      $mostrar .= "Modificar <br>";
+      $mostrar .= "<a href='../aprender2/formulariomodificar.php?id=".$elem['id_documento']."'>Modificar</a> <br>";
       $mostrar .= "Eliminar";
       $mostrar .= "</td>";
       //print_r($extension);
