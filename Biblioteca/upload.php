@@ -45,13 +45,12 @@ include_once "../lib/PDOConfig.php";
         if($res){
           $sqlIngresado="select id_documento from documento where nombre='".$nombre."'";
           $resIngreso=$base->query($sqlIngresado);
-          $id_documento = $base->lastInsertId();
           if($resIngreso){
             $datosIngreso=$resIngreso->fetchAll(PDO::FETCH_ASSOC);
             //print_r($datosIngreso);
-            $sqlEtiqueta=" ";
             foreach($etiquetas as $elem){
-              $sqlEtiqueta="insert into contiene(id_documento,id_etiqueta)values(".$id_documento.",".$elem.")";
+              $sqlEtiqueta=" ";
+              $sqlEtiqueta="insert into contiene(id_documento,id_etiqueta)values(".$datosIngreso[0]['id_documento'].",".$elem.")";
               $resEtiqueta=$base->query($sqlEtiqueta);
               if($resEtiqueta){
                 echo "ingresado";
