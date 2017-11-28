@@ -43,12 +43,12 @@ $(document).ready(function(){
             //una vez finalizado correctamente
             success: function(data){
 
-                message = $("<span class='success'>Se ha subido correctamente el archivo</span>"+data);
+               message = $(data);
                showMessage(message);
-               if(isImage(fileExtension))
-               {
-                  $(".showImage").html("<img src='files/"+data+"'/>");
-                }
+              //  if(isImage(fileExtension))
+              //  {
+              //     $(".showImage").html("<img src='files/"+data+"'/>");
+              //   }
             },
             //si ha ocurrido un error
             error: function(){
@@ -133,7 +133,7 @@ $(document).ready(function(){
             //una vez finalizado correctamente
             success: function(data){
 
-                message = $("<span class='success'>Se ha subido correctamente el archivo</span>"+data);
+                message = $(data);
                showMessage(message);
               //  if(isImage(fileExtension))
               //  {

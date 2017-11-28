@@ -27,7 +27,7 @@ include_once "../lib/PDOConfig.php";
         echo "no se puede cargar archivo, ya se encuentra cargado!";
       }else{
         //print_r($_POST);
-        $etiquetas=$_POST['etiqueta'];
+        $etiquetas=isset($_POST['etiqueta'])?($_POST['etiqueta']):"";
         $descripcion = $_POST['comentario'];
         $categoria = $_POST['categoria'];
         //  echo "no encontrado\n";  //$sql="insert into archivos (id,info,imagen) VALUES(null,'".$file['$file']."','".."')"
@@ -36,28 +36,28 @@ include_once "../lib/PDOConfig.php";
         $x=".".$extension[1];
         $nombre=basename($file,$x);
         // echo "nombre:".$nombre."  extencion".$x;
-        echo "-------------INGRESO AL INSERTAR DOCU------------<br>";
+        //echo "-------------INGRESO AL INSERTAR DOCU------------<br>";
         $sql="insert into documento(id_documento, nombre, ruta, extension, descripcion, id_categoria)
         VALUES (null,'".$nombre."','files/".$file."','".$extension[1]."','".$descripcion."',".$categoria.")";
         $res=$base->query($sql);
+        $id_documento = $base->lastInsertId();
         if($res){
-          $sqlIngresado="select id_documento from documento where nombre='".$nombre."'";
-          $resIngreso=$base->query($sqlIngresado);
-          $id_documento = $base->lastInsertId();
-          if($resIngreso){
-            $datosIngreso=$resIngreso->fetchAll(PDO::FETCH_ASSOC);
-            //print_r($datosIngreso);
-            $sqlEtiqueta=" ";
+          $sqlEtiqueta=" ";
+          if($etiquetas !=""){
             foreach($etiquetas as $elem){
               $sqlEtiqueta="insert into contiene(id_documento,id_etiqueta)values(".$id_documento.",".$elem.")";
               $resEtiqueta=$base->query($sqlEtiqueta);
-              if($resEtiqueta){
-                echo "ingresado";
-              }
             }
-          }else{
-            echo "Error en la consulta al select";
+            echo "¡Archivo Insertado!";
           }
+          // $sqlIngresado="select id_documento from documento where nombre='".$nombre."'";
+          // $resIngreso=$base->query($sqlIngresado);
+          //  if($resIngreso){
+          //   $datosIngreso=$resIngreso->fetchAll(PDO::FETCH_ASSOC);
+          //print_r($datosIngreso);
+          // }else{
+          //   echo "Error en la consulta al select";
+          // }
         }else{
           echo "Error en el ingreso en la base de datos";
         }
