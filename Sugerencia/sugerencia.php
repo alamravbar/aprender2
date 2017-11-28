@@ -1,6 +1,3 @@
-<?php
-echo '<a data-pin-do="embedUser" data-pin-lang="es" data-pin-board-width="400" data-pin-scale-height="300" data-pin-scale-width="300" href="https://ar.pinterest.com/usarioprueba/"></a>';
-?>
 <!DOCTYPE html>
 
 <html>
