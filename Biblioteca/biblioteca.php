@@ -115,9 +115,7 @@ $oLogin=new Login();
       <!--div para visualizar mensajes-->
       <div class="messages"></div><br /><br />
       <!--div para visualizar en el caso de imagen-->
-      <div class="showImage"></div>
-
-      </div>
+      <!-- <div class="showImage"></div></div> -->
 
     </div></div>
 </div>

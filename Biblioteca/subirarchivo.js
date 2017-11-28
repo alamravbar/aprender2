@@ -135,10 +135,10 @@ $(document).ready(function(){
 
                 message = $("<span class='success'>Se ha subido correctamente el archivo</span>"+data);
                showMessage(message);
-               if(isImage(fileExtension))
-               {
-                  $(".showImage").html("<img src='files/"+data+"'/>");
-                }
+              //  if(isImage(fileExtension))
+              //  {
+              //     $(".showImage").html("<img src='files/"+data+"'/>");
+              //   }
             },
             //si ha ocurrido un error
             error: function(){
