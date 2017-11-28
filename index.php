@@ -1,7 +1,7 @@
 <?php
 include_once('lib/Login.php');
 $oLogin=new Login();
- //echo 'Rol: '.$oLogin->getRol()." Nombre usuario: ".$oLogin->getNombreUsuario();
+//echo 'Rol: '.$oLogin->getRol()." Nombre usuario: ".$oLogin->getNombreUsuario();
 ?>
 <html>
 <head>
@@ -23,26 +23,25 @@ $oLogin=new Login();
         <ul class="nav navbar-nav navbar-right">
           <?php
           if(!$oLogin->activa()){ ?>
-          <li><a href="#" id="login"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
+            <li><a href="#" id="login"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
           <?php }else{ ?>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-             <?php
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <?php
+                 echo $oLogin->getNombreUsuario();
+                ?> <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Cambiar Contraseña</a></li>
+                <li><a href="cerrarLogin.php">Salir</a></li>
+              </ul>
+            </li>
+            <?php
+            }
+            ?>
+          </ul>
 
-               echo $oLogin->getNombreUsuario();
 
-             ?> <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Cambiar Contraseña</a></li>
-              <li><a href="cerrarLogin.php">Salir</a></li>
-            </ul>
-          </li>
-        </ul>
-
-        <?php     }
-
-             ?>
 
         <ul class="nav navbar-nav navbar-right">
           <li class="active"id="inicio"><a href="#">Inicio</a></li>
@@ -51,8 +50,10 @@ $oLogin=new Login();
           <li id="sugerenci"><a href="#"  onclick="getpinterest()" id="sugerencia">Sugerencias</a></li>
            
           <li id="sumat"><a href="#" id="sumate">Sumate</a></li>
-          <li id="administracio"><a href="#" id="administracion">Administración</a></li>
           <li id="plataform"><a href="Plataforma/index.php" id="plataforma">Plataforma</a></li>
+          <?php if($oLogin->getRol()==4){ ?>
+            <li id="administracio"><a href="#" id="administracion">Administración</a></li>
+          <?php } ?>
         </ul>
       </div>
     </nav>
@@ -172,6 +173,7 @@ $oLogin=new Login();
     $("#login").click(function(){
       $("#modalLogin").modal();
     });
+
   });
 
   $("#biblioteca").click(function(){
@@ -185,7 +187,7 @@ $oLogin=new Login();
       $("#sumat").removeClass("active");
       $("#inicio").removeClass("active");
     });
-     // Interceptamos el evento submit
+    // Interceptamos el evento submit
 
 
 
@@ -201,6 +203,7 @@ $oLogin=new Login();
       $("#bibliotec").removeClass("active");
       $("#inicio").removeClass("active");
     });});
+
 
     $("#administracion").click(function(){
       $.get("Administracion/administracion.php", function(data){
@@ -252,6 +255,20 @@ $oLogin=new Login();
       });});
 
       </script>
-
+      <?php if($oLogin->activa()){  ?>
+      <script>
+          (function(d, w, c) {
+              w.ChatraID = 'yYyHuG5QqE2c552kA';
+              var s = d.createElement('script');
+              w[c] = w[c] || function() {
+                  (w[c].q = w[c].q || []).push(arguments);
+              };
+              s.async = true;
+              s.src = (d.location.protocol === 'https:' ? 'https:': 'http:')
+              + '//call.chatra.io/chatra.js';
+              if (d.head) d.head.appendChild(s);
+          })(document, window, 'Chatra');
+      </script>
+    <?php } ?>
     </body>
     </html>
