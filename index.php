@@ -48,7 +48,8 @@ $oLogin=new Login();
           <li class="active"id="inicio"><a href="#">Inicio</a></li>
           <li id="bibliotec"><a href="#" id="biblioteca">Biblioteca</a></li>
           <li id="asignatur"><a href="#" id="asignatura">Asignatura</a></li>
-          <li id="sugerenci"><a href="#" id="sugerencia">Sugerencias</a></li>
+          <li id="sugerenci"><a href="#"  onclick="getpinterest()" id="sugerencia">Sugerencias</a></li>
+           
           <li id="sumat"><a href="#" id="sumate">Sumate</a></li>
           <li id="administracio"><a href="#" id="administracion">Administración</a></li>
           <li id="plataform"><a href="Plataforma/index.php" id="plataforma">Plataforma</a></li>
@@ -179,7 +180,7 @@ $oLogin=new Login();
       $("#bibliotec").addClass("active");
       $("#asignatur").removeClass("active");
       $("#administacio").removeClass("active");
-      $("#sugerenci").removeClass("active");
+      $("Sugerencia/sugerencia.php").removeClass("active");
       $("#plataform").removeClass("active");
       $("#sumat").removeClass("active");
       $("#inicio").removeClass("active");
