@@ -1,11 +1,12 @@
 <?php
-include_once "lib/PDOConfig.php";
+include_once "../lib/PDOConfig.php";
 $base=new PDOConfig();
-if(isset($_GET)){
-    $id=$_GET['id'];
-    $descripcion=$_GET['descripcion'];
+if(isset($_POST)){
+    $id=$_POST['id'];
+    $descripcion=$_POST['descripcion'];
+    $categoria =$_POST['categoria'];
     $sql = "UPDATE documento SET descripcion='".$descripcion."' WHERE id_documento=".$id." ";
-    
+
     $resultado=$base->query($sql);
     if($resultado){
         echo "Modificación realizada con exito";
