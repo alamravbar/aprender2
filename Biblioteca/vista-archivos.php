@@ -55,9 +55,12 @@
       $mostrar .= "<strong>Categoria: </strong>".$elem['nombre_cat']."<br />";
       $mostrar .= $etiquetas;
       $mostrar .= "</td>";
-      $mostrar .= "<td style='font-size:15px;'>";
-      $mostrar .= "<a href='#' class='modificar' data-id='".$elem['id_documento']."'>Modificar</a> <br>";
-      $mostrar .= "<a href='#' class='eliminar' data-id='".$elem['id_documento']."' data-ruta='".$elem['ruta']."'>Eliminar</a> ";
+      $mostrar .= "<td style='font-size:12px;'>";
+      $mostrar .= "<a href='#' class='modificar' data-id='".$elem['id_documento']."'>Modificar</a> <br />";
+      $mostrar .= "<a href='#' class='eliminar' data-id='".$elem['id_documento']."' data-ruta='".$elem['ruta']."'>Eliminar</a><br /> ";
+      $mostrar .= "Mandar a validar <br />";
+      $mostrar .= "Validar <br />";
+      $mostrar .= "No Validar <br />";
       $mostrar .= "</td>";
       //print_r($extension);
       //<a href="#" class="list-group-item">

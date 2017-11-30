@@ -12,6 +12,7 @@ include_once "../lib/PDOConfig.php";
     //print_r($_SERVER);
     //obtenemos el archivo a subir
     $file = $_FILES['archivo']['name'];
+    print_r($file);
     $nombre = explode(".",$file);
     // echo "----ARCHIVOS----".$file."----- <br>";
      $query=" select * from documento where nombre='".$nombre[0]."'";
@@ -22,7 +23,7 @@ include_once "../lib/PDOConfig.php";
       echo "Error en hacer petición al servidor sobre si se encuentra o no el archivo ";
     }else{
       $dato=$resultado->rowCount(PDO::FETCH_ASSOC);
-      //echo "------------DATO = ".$dato."---------------<br>";
+      echo "------------DATO = ".$dato."---------------<br>";
       if($dato>0){
         echo "no se puede cargar archivo, ya se encuentra cargado!";
       }else{
