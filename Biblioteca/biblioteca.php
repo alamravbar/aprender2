@@ -91,7 +91,7 @@ $oLogin=new Login();
               <label for="imagen">Seleccione un archivo..</label>
               <input type="file" class="form-control-file formulario btn btn-default" id="imagen" name="archivo">
             </div>
-
+            <input type="hidden" name="nombre_usuario" value='<?php echo $oLogin->getNombreUsuario(); ?>'>
             <div class="form-group">
               <label for="comentario">Descripcion</label>
               <textarea class="form-control" id="comentario" name="comentario" rows="3" ></textarea>

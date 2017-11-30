@@ -98,11 +98,15 @@
     $(".eliminar").click(function(){
       var id = $(this).data("id");
       var ruta=$(this).data("ruta");
+
+        var elim = confirm("¿Seguro quiere Eliminar?");
+        if (elim == true) {
+          $.post("Biblioteca/eliminar.php",{id:id , ruta:ruta},
+          function(data){
+            alert(data);
+          });
+        }
       //alert("eliminar "+id);
-      $.post("Biblioteca/eliminar.php",{id:id , ruta:ruta},
-      function(data){
-        alert(data);
-      });
     });
   </script>
 

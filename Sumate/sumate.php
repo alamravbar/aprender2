@@ -327,7 +327,7 @@
                         $("#email_error_2").hide();
                         $("#ing_inc_nombre_usuario").hide();
                         $("#nombre_usuario_error_2").hide();
-                      setTimeout(function(){alert("Agregado Exitosamente");window.location.href = "http://localhost/aprender2/"; }, 3000);
+                      setTimeout(function(){alert("Agregado Exitosamente");window.location.href = "http://localhost/aprender2/"; }, 1000);
                       }else{
                         if(ing_inc_nom_usu){
                           $("#ing_inc_nombre_usuario").show();

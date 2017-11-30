@@ -22,7 +22,7 @@ include_once "../lib/PDOConfig.php";
       echo "Error en hacer petición al servidor sobre si se encuentra o no el archivo ";
     }else{
       $dato=$resultado->rowCount(PDO::FETCH_ASSOC);
-      echo "------------DATO = ".$dato."---------------<br>";
+      //echo "------------DATO = ".$dato."---------------<br>";
       if($dato>0){
         echo "no se puede cargar archivo, ya se encuentra cargado!";
       }else{
@@ -30,6 +30,8 @@ include_once "../lib/PDOConfig.php";
         $etiquetas=isset($_POST['etiqueta'])?($_POST['etiqueta']):"";
         $descripcion = $_POST['comentario'];
         $categoria = $_POST['categoria'];
+        $nombre_usuario = $_POST['nombre_usuario'];
+        //echo $nombre_usuario;
         //  echo "no encontrado\n";  //$sql="insert into archivos (id,info,imagen) VALUES(null,'".$file['$file']."','".."')"
         $extension=explode(".",$file);
         // echo($extension[1]);
@@ -37,10 +39,11 @@ include_once "../lib/PDOConfig.php";
         $nombre=basename($file,$x);
         // echo "nombre:".$nombre."  extencion".$x;
         //echo "-------------INGRESO AL INSERTAR DOCU------------<br>";
-        $sql="insert into documento(id_documento, nombre, ruta, extension, descripcion, id_categoria)
-        VALUES (null,'".$nombre."','files/".$file."','".$extension[1]."','".$descripcion."',".$categoria.")";
+        $sql="insert into documento(id_documento, nombre, ruta, extension, descripcion,habilitado, id_categoria)
+        VALUES (null,'".$nombre."','files/".$file."','".$extension[1]."','".$descripcion."',0,".$categoria.")";
         $res=$base->query($sql);
         $id_documento = $base->lastInsertId();
+        //echo $id_documento;
         if($res){
           $sqlEtiqueta=" ";
           if($etiquetas !=""){
@@ -50,6 +53,23 @@ include_once "../lib/PDOConfig.php";
             }
             echo "¡Archivo Insertado!";
           }
+          $sqlDocente = "SELECT id_persona FROM usuario WHERE nombre = '".$nombre_usuario."'";
+
+          $respuesta_usuario=$base->query($sqlDocente);
+          if($respuesta_usuario){
+            $dato_id_docente  =$respuesta_usuario->fetch(PDO::FETCH_ASSOC);
+            //echo $dato_id_docente['id_persona'];
+
+            $sql_carga = "INSERT INTO `carga`(`id_docente`, `id_documento`, `fecha_creacion`) VALUES (".$dato_id_docente['id_persona'].",".$id_documento.",NOW())";
+            //echo $sql_carga;
+            $respuesta_carga = $base->query($sql_carga);
+            if(!$respuesta_carga){
+              echo "error al cargar el documento 'Carga' ";
+            }
+          }
+
+
+
           // $sqlIngresado="select id_documento from documento where nombre='".$nombre."'";
           // $resIngreso=$base->query($sqlIngresado);
           //  if($resIngreso){
