@@ -89,7 +89,7 @@ $oLogin=new Login();
           <form enctype="multipart/form-data" class="formulario">
             <div class="form-group">
               <label for="imagen">Seleccione un archivo..</label>
-              <input type="file" class="form-control-file formulario" id="imagen" name="archivo">
+              <input type="file" class="form-control-file formulario btn btn-default" id="imagen" name="archivo">
             </div>
 
             <div class="form-group">
@@ -136,6 +136,10 @@ $oLogin=new Login();
   <br><br>
   <br><br>
   <br><br>
+  <div class="" id="formmod">
+
+  </div>
+
 <?php } ?>
 
 <!--<script type="text/javascript" src="../js/jquery.js"></script>

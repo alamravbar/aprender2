@@ -36,12 +36,9 @@ include_once "../lib/PDOConfig.php";
 
 <html>
     <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="../css/bootstrap.css">
-      <link rel="stylesheet" href="../css/style.css">
     </head>
     <body>
-        <form method="post" id="form" action="modificar.php">
+        <form method="post" id="form_actualizar">
 
             <input type="hidden" name="id" id="id" value='"<?php echo $id;?>"'>
             <div class="form-group">
@@ -66,13 +63,17 @@ include_once "../lib/PDOConfig.php";
               </select>
             </div>
 
-            <button type="submit" name="actualizar_form" id="actualizar_form" class="btn btn-default">Actualizar</button>
-            <a href="../" class="btn btn-default">Volver</a>
-        </form>
-        <script type="text/javascript" src="../js/jquery.js"></script>
-        <script type="text/javascript" src="../js/bootstrap.js"></script>
-        <script type="text/javascript">
+            <button type="button" name="actualizar_form" id="actualizar_form" class="btn btn-default">Actualizar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
+        </form>
+        <script type="text/javascript">
+          $("#actualizar_form").click(function(){
+            $.post("Biblioteca/modificar.php",$("#form_actualizar").serialize(),
+            function(data){
+              alert(data);
+            });
+          });
         </script>
     </body>
 </html>
