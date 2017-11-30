@@ -62,7 +62,7 @@ if(!$resultado){
       $mostrar .= "</td>";
       $mostrar .= "<td style='font-size:15px;'>";
       $mostrar .= "<a href='../aprender2/formulariomodificar.php?id=".$elem['id_documento']."'>Modificar</a> <br>";
-      $mostrar .= "Eliminar";
+      $mostrar .= "<a href='eliminardocumento.php?id=".$elem['id_documento']."'>Eliminar</a> <br>";
       $mostrar .= "</td>";
       //print_r($extension);
        //<a href="#" class="list-group-item">
