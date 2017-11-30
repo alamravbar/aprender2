@@ -85,15 +85,13 @@ $oLogin=new Login();
         <h4 class="modal-title">Subir Archivos</h4>
       </div>
       <div class="modal-body">
-
           <!-- Content here -->
-
           <form enctype="multipart/form-data" class="formulario">
             <div class="form-group">
               <label for="imagen">Seleccione un archivo..</label>
-              <input type="file" class="form-control-file formulario" id="imagen" name="archivo">
+              <input type="file" class="form-control-file formulario btn btn-default" id="imagen" name="archivo">
             </div>
-
+            <input type="hidden" name="nombre_usuario" value='<?php echo $oLogin->getNombreUsuario(); ?>'>
             <div class="form-group">
               <label for="comentario">Descripcion</label>
               <textarea class="form-control" id="comentario" name="comentario" rows="3" ></textarea>
@@ -119,6 +117,7 @@ $oLogin=new Login();
 
     </div></div>
 </div>
+<!--- Fin Modal --->
 <div class="show_archive">
 
 </div>
@@ -137,6 +136,10 @@ $oLogin=new Login();
   <br><br>
   <br><br>
   <br><br>
+  <div class="" id="formmod">
+
+  </div>
+
 <?php } ?>
 
 <!--<script type="text/javascript" src="../js/jquery.js"></script>
