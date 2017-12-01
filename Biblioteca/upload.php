@@ -29,6 +29,8 @@ include_once "../lib/PDOConfig.php";
       }else{
         //print_r($_POST);
         $etiquetas=isset($_POST['etiqueta'])?($_POST['etiqueta']):"";
+        //print_r($etiquetas);
+        echo "<br>";
         $descripcion = $_POST['comentario'];
         $categoria = $_POST['categoria'];
         $nombre_usuario = $_POST['nombre_usuario'];
@@ -43,6 +45,7 @@ include_once "../lib/PDOConfig.php";
         $sql="insert into documento(id_documento, nombre, ruta, extension, descripcion,estado, id_categoria)
         VALUES (null,'".$nombre."','files/".$file."','".$extension[1]."','".$descripcion."',0,".$categoria.")";
         //echo $sql;
+        //echo "Se inserto el archivo XXXXXX";
         $res=$base->query($sql);
         $id_documento = $base->lastInsertId();
         //echo $id_documento;
@@ -69,9 +72,6 @@ include_once "../lib/PDOConfig.php";
               echo "error al cargar el documento 'Carga' ";
             }
           }
-
-
-
           // $sqlIngresado="select id_documento from documento where nombre='".$nombre."'";
           // $resIngreso=$base->query($sqlIngresado);
           //  if($resIngreso){

@@ -1,37 +1,3 @@
-<?php
-include_once "../lib/PDOConfig.php";
-$base=new PDOConfig();
-$sql="select * from categoria";
-$resultado=$base->query($sql);
-if(!$resultado){
-  echo "Error en la base de datos";
-}else{
-  $datos=$resultado->fetchAll(PDO::FETCH_ASSOC);
-
-  $categoria="<option value=-1>Seleccione una categoria..</option>";
-  foreach($datos as $elem){
-    $categoria.="<option value=".$elem['id_categoria'].">".$elem['nombre']."</option>";
-  }
-  $categoria.="";
-  $sqletiquetas="select * from etiqueta";
-  $resultadoCombo=$base->query($sqletiquetas);
-  if($resultado){
-    $datosCombo=$resultadoCombo->fetchAll(PDO::FETCH_ASSOC);
-    $comboetiqueta="";
-
-
-    foreach($datosCombo as $elem){
-      $comboetiqueta.="<div class='form-check disabled'>
-      <label class='form-check-label'> <input class='form-check-input formulario' type='checkbox' name='etiqueta[]' value=".$elem['id_etiqueta'].">".$elem['nombre']."</label></div>";
-    }
-    $comboetiqueta.="";
-  }else{
-    echo "Resultado incorrecto";
-  }
-
-}
-?>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -102,11 +68,18 @@ $oLogin=new Login();
 
             </div>
             <div class="form-group" id="agregarcate" style="display:none;">
-              <label for="">Agregar Categoria</label>
+              <label for="nombre_cat">Agregar Categoria</label>
               <input type="text" name="nombre_cat" id="nombre_cat" value="" class="form-control">
               <button type="button" id="categoria_button" class="btn btn-block btn-default">Agregar</button>
             </div>
-            <?php echo $comboetiqueta;?>
+            <div class="form-inline" id="agregareti" >
+              <label for="agregareti">Agregar Etiqueta: </label>
+              <input type="text" name="nombre_eti" id="nombre_eti" value="" class="form-control">
+              <button type="button" id="etiqueta_button" class="btn btn-default">Agregar</button>
+            </div>
+            <div class="etiquetas" id="etiquetas" style="text-align:center;" >
+
+            </div>
       </form>
       </div>
       <button id="subir_arch" class="btn btn-default btn-block" style="width:80%; margin-left:auto;margin-right:auto;">Subir Archivo</button>
@@ -159,6 +132,27 @@ $("#categoria_button").click(function(){
   });
   $("#agregarcate").hide();
   $("#categoria").load("Biblioteca/categoria/obtener_categorias.php");
+});
+
+var contador = 0;
+$("#etiqueta_button").click(function(){
+  var nombre_eti = $("#nombre_eti").val();
+  //tendria que crear la etiqueta una especie de insertar etiqueta u obtener id => etiqueta
+  //alert(nombre_eti);
+  $.post("Biblioteca/etiqueta/insertar_etiqueta.php",{nombre_eti:nombre_eti},function(data){
+    //alert(data);
+    if(data == -1){
+      alert("Nombre Vacio");
+    }else{
+      contador = contador + 1;
+      $("#etiquetas").append("<input class='form-check-input formulario' type='checkbox' name='etiqueta[]' value="+data+" checked>"+nombre_eti+"</label>");
+      if(contador == 6){
+        $("#etiquetas").append("<br />");
+      }
+    }
+  });
+  //Después de obtenerla agregarla con append a la parte de "etiquetas"
+
 });
 $.get("Biblioteca/vista-archivos.php", function(data){
   $(".show_archive").html(data);
