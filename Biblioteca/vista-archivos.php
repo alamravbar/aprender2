@@ -15,11 +15,11 @@
 
   include_once '../lib/PDOConfig.php';
   $base = new PDOConfig();
-  $sql="SELECT d.nombre as nombre, d.ruta as ruta,d.id_documento as id_documento,d.extension as extension, d.descripcion as descripcion,d.habilitado as habilitado,d.id_categoria as id_categoria, c.nombre as nombre_cat  FROM documento d INNER JOIN categoria c ON  d.id_categoria = c.id_categoria;";
+  $sql="SELECT d.nombre as nombre, d.ruta as ruta,d.id_documento as id_documento,d.extension as extension, d.descripcion as descripcion,d.estado as estado,d.id_categoria as id_categoria, c.nombre as nombre_cat  FROM documento d INNER JOIN categoria c ON  d.id_categoria = c.id_categoria;";
 
   $resultado=$base->query($sql);
   if(!$resultado){
-    echo "Error en la base de datos";
+    echo "Error en la base de datos por select";
   }else{
     $datos = $resultado->fetchAll(PDO::FETCH_ASSOC);
     $mostrar=" ";
@@ -34,7 +34,7 @@
       $resultado=$base->query($sqlEtiquetas);
       $etiquetas = "";
       if(!$resultado){
-        $mostrar.= "error en base de datos";
+        $mostrar.= "error en base de datos por select";
       }else{
         $etiquetas = "";
         $datos = $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -59,13 +59,9 @@
       $mostrar .= "<td style='font-size:12px;'>";
       $mostrar .= "<a href='#' class='modificar' data-id='".$elem['id_documento']."'>Modificar</a> <br />";
       $mostrar .= "<a href='#' class='eliminar' data-id='".$elem['id_documento']."' data-ruta='".$elem['ruta']."'>Eliminar</a><br /> ";
-      $mostrar .= "Mandar a validar <br />";
+      $mostrar .= "Ver observaciones <br />";
       $mostrar .= "Validar <br />";
       $mostrar .= "No Validar <br />";
-
-      $mostrar .= "<a href='#' class='modificar' data-id='".$elem['id_documento']."'>Modificar</a> <br>";
-      $mostrar .= "<a href='#' class='eliminar' data-id='".$elem['id_documento']."' data-ruta='".$elem['ruta']."'>Eliminar</a> ";
-
       $mostrar .= "</td>";
       //print_r($extension);
       //<a href="#" class="list-group-item">

@@ -1,3 +1,7 @@
+function getFileExtension(filename) {
+  return (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename)[0] : undefined;
+}
+
 $(document).ready(function(){
     $(".messages").hide();
     //queremos que esta variable sea global
@@ -10,13 +14,14 @@ $(document).ready(function(){
         //obtenemos el nombre del archivo
         var fileName = file.name;
         //obtenemos la extensión del archivo
-        fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+        //fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+        fileExtension = getFileExtension(fileName);
         //obtenemos el tamaño del archivo
         var fileSize = file.size;
         //obtenemos el tipo de archivo image/png ejemplo
         var fileType = file.type;
         //mensaje con la información del archivo
-        showMessage("<span class='info'>Archivo para subir: "+fileName+", peso total: "+fileSize+" bytes.</span>");
+        showMessage("<span class='info'>Archivo para subir: "+fileName+", peso total: "+fileSize+" bytes.</span><br />");
     });
 
     //al enviar el formulario
@@ -25,6 +30,7 @@ $(document).ready(function(){
         var formData = new FormData($(".formulario")[0]);
         var message = "";
         //hacemos la petición ajax
+
         $.ajax({
             url: 'Biblioteca/upload.php',
             type: 'POST',

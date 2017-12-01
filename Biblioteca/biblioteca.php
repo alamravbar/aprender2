@@ -98,26 +98,28 @@ $oLogin=new Login();
             </div>
 
 
-            <div class="form-group">
-              <label for="categoria">Seleccione una categoria..</label>
-              <select class="form-control formulario" id="categoria" name = "categoria">
-                <?php echo $categoria;?>
-              </select>
-            </div>
+            <div class="form-group" id="categoria">
 
+            </div>
+            <div class="form-group" id="agregarcate" style="display:none;">
+              <label for="">Agregar Categoria</label>
+              <input type="text" name="nombre_cat" id="nombre_cat" value="" class="form-control">
+              <button type="button" id="categoria_button" class="btn btn-block btn-default">Agregar</button>
+            </div>
             <?php echo $comboetiqueta;?>
       </form>
       </div>
-      <button id="subir_arch">Subir Archivo</button>
+      <button id="subir_arch" class="btn btn-default btn-block" style="width:80%; margin-left:auto;margin-right:auto;">Subir Archivo</button>
 
       <!--div para visualizar mensajes-->
-      <div class="messages"></div><br /><br />
+      <div class="messages" style="width:80%; margin-left:auto;margin-right:auto; text-align:center;"></div><br /><br />
       <!--div para visualizar en el caso de imagen-->
       <!-- <div class="showImage"></div></div> -->
 
     </div></div>
 </div>
 <!--- Fin Modal --->
+
 <div class="show_archive">
 
 </div>
@@ -147,6 +149,17 @@ $oLogin=new Login();
 -->
 <script type="text/javascript" src="Biblioteca/subirarchivo.js"></script>
 <script type="text/javascript">
+function agregarcategoria(){
+  $("#agregarcate").show();
+}
+$("#categoria_button").click(function(){
+  var nombre_cat = $("#nombre_cat").val();
+  $.post("Biblioteca/categoria/agregar_categoria.php",{nombre_cat:nombre_cat},function(data){
+    alert(data);
+  });
+  $("#agregarcate").hide();
+  $("#categoria").load("Biblioteca/categoria/obtener_categorias.php");
+});
 $.get("Biblioteca/vista-archivos.php", function(data){
   $(".show_archive").html(data);
 });
@@ -173,6 +186,7 @@ $(".sumate").click(function(){
   $(".login").click(function(){
     $("#modalLogin").modal();
   });
+  $("#categoria").load("Biblioteca/categoria/obtener_categorias.php");
 </script>
 
 </body>

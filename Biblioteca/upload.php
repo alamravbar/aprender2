@@ -12,7 +12,7 @@ include_once "../lib/PDOConfig.php";
     //print_r($_SERVER);
     //obtenemos el archivo a subir
     $file = $_FILES['archivo']['name'];
-    print_r($file);
+    //print_r($file);
     $nombre = explode(".",$file);
     // echo "----ARCHIVOS----".$file."----- <br>";
      $query=" select * from documento where nombre='".$nombre[0]."'";
@@ -23,9 +23,9 @@ include_once "../lib/PDOConfig.php";
       echo "Error en hacer petición al servidor sobre si se encuentra o no el archivo ";
     }else{
       $dato=$resultado->rowCount(PDO::FETCH_ASSOC);
-      echo "------------DATO = ".$dato."---------------<br>";
+      //echo "------------DATO = ".$dato."---------------<br>";
       if($dato>0){
-        echo "no se puede cargar archivo, ya se encuentra cargado!";
+        echo "no se puede cargar archivo, ¡ya se encuentra cargado!<br />";
       }else{
         //print_r($_POST);
         $etiquetas=isset($_POST['etiqueta'])?($_POST['etiqueta']):"";
@@ -40,8 +40,9 @@ include_once "../lib/PDOConfig.php";
         $nombre=basename($file,$x);
         // echo "nombre:".$nombre."  extencion".$x;
         //echo "-------------INGRESO AL INSERTAR DOCU------------<br>";
-        $sql="insert into documento(id_documento, nombre, ruta, extension, descripcion,habilitado, id_categoria)
+        $sql="insert into documento(id_documento, nombre, ruta, extension, descripcion,estado, id_categoria)
         VALUES (null,'".$nombre."','files/".$file."','".$extension[1]."','".$descripcion."',0,".$categoria.")";
+        //echo $sql;
         $res=$base->query($sql);
         $id_documento = $base->lastInsertId();
         //echo $id_documento;
@@ -52,7 +53,7 @@ include_once "../lib/PDOConfig.php";
               $sqlEtiqueta="insert into contiene(id_documento,id_etiqueta)values(".$id_documento.",".$elem.")";
               $resEtiqueta=$base->query($sqlEtiqueta);
             }
-            echo "¡Archivo Insertado!";
+            echo "¡Archivo Insertado!<br />";
           }
           $sqlDocente = "SELECT id_persona FROM usuario WHERE nombre = '".$nombre_usuario."'";
 

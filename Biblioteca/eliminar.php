@@ -13,7 +13,7 @@ if($_POST){
     $resultadocontiene=$base->query($sqlcontiene);
     if($resultadocontiene){
       $sqldocumento="delete from documento where id_documento=".$id;
-      echo $sqldocumento;
+      //echo $sqldocumento;
       $resultado=$base->query($sqldocumento);
       if($resultado){
         if(!unlink($ruta)){
