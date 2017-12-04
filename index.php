@@ -218,9 +218,9 @@ $oLogin=new Login();
       });
     });
     $("#sugerencia").click(function(){
-      $.get("Sugerencia/sugerencia.php", function(data){
-        $("#vista").html(data);
-        $("#sugerenci").addClass("active");
+      $.get("Sugerencia/vistatwits.php", function(data){
+         $("#vista").html(data);
+        $("#sugerencia").addClass("active");
         $("#bibliotec").removeClass("active");
         $("#asignatur").removeClass("active");
         $("#plataform").removeClass("active");
@@ -270,5 +270,6 @@ $oLogin=new Login();
           })(document, window, 'Chatra');
       </script>
     <?php } ?>
+    
     </body>
     </html>
