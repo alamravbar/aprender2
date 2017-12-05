@@ -62,11 +62,7 @@ $oLogin=new Login();
               <label for="comentario">Descripcion</label>
               <textarea class="form-control" id="comentario" name="comentario" rows="3" ></textarea>
             </div>
-
-
-            <div class="form-group" id="categoria">
-
-            </div>
+            <div class="form-group" id="categoria"></div>
             <div class="form-group" id="agregarcate" style="display:none;">
               <label for="nombre_cat">Agregar Categoria</label>
               <input type="text" name="nombre_cat" id="nombre_cat" value="" class="form-control">
@@ -90,6 +86,32 @@ $oLogin=new Login();
       <!-- <div class="showImage"></div></div> -->
 
     </div></div>
+</div>
+<!--- Fin Modal --->
+<!-- Modal Crear observaciones-->
+<div class="modal fade" id="crearObservacion" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h4 class="modal-title">Crear Observación</h4>
+      </div>
+      <div class="modal-body">
+          <!-- Content here -->
+          <form id="form_observacion">
+            <div class="id_documento" id="id_documento">
+
+            </div>
+            <div class="form-group">
+              <label for="descripcion_observacion">Descripcion</label>
+              <textarea class="form-control" id="descripcion_observacion" name="descripcion_observacion" rows="3" ></textarea>
+            </div>
+      </form>
+      <button id="button_observacion" class="btn btn-success btn-block" style="width:80%; margin-left:auto;margin-right:auto;">Crear Observación</button>
+      </div>
+    </div>
+  </div>
 </div>
 <!--- Fin Modal --->
 
@@ -154,7 +176,7 @@ $("#etiqueta_button").click(function(){
   //Después de obtenerla agregarla con append a la parte de "etiquetas"
 
 });
-$.get("Biblioteca/vista-archivos.php", function(data){
+$.get("Biblioteca/documento/vista-archivos.php", function(data){
   $(".show_archive").html(data);
 });
 
@@ -166,19 +188,25 @@ $(".openBtn").on('click',function(){
 //     $('#formSubirArchivo').modal({show:true});
 //   });
 // });
-$(".sumate").click(function(){
-  $.get("Sumate/sumate.php", function(data){
-    $("#vista").html(data);
-    $("#sumat").addClass("active");
-    $("#asignatur").removeClass("active");
-    $("#administracio").removeClass("active");
-    $("#sugerenci").removeClass("active");
-    $("#plataform").removeClass("active");
-    $("#bibliotec").removeClass("active");
-    $("#inicio").removeClass("active");
-  });});
+
   $(".login").click(function(){
     $("#modalLogin").modal();
+  });
+  $("#button_observacion").click(function(){
+    var id_documento =$("#id_docu").val();
+    var descripcion = $("#descripcion_observacion").val();
+    // console.log(id_documento);
+    // console.log(descripcion);
+    $.post("Biblioteca/observacion/insertar_observacion.php",{id_documento:id_documento,descripcion:descripcion},
+        function(data){
+          alert(data);
+          $("#descripcion_observacion").val("");
+          $.post("Biblioteca/documento/validar_documento.php",{id:id_documento,estado:2},
+          function(data){
+            alert(data);
+          });
+    });
+
   });
   $("#categoria").load("Biblioteca/categoria/obtener_categorias.php");
 </script>
