@@ -209,6 +209,17 @@ $(".openBtn").on('click',function(){
 
   });
   $("#categoria").load("Biblioteca/categoria/obtener_categorias.php");
+  $("#sumate").click(function(){
+    $.get("Sumate/sumate.php", function(data){
+      $("#vista").html(data);
+      $("#sumat").addClass("active");
+      $("#asignatur").removeClass("active");
+      $("#administracio").removeClass("active");
+      $("#sugerenci").removeClass("active");
+      $("#plataform").removeClass("active");
+      $("#bibliotec").removeClass("active");
+      $("#inicio").removeClass("active");
+    });});
 </script>
 
 </body>
