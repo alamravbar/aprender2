@@ -1,5 +1,6 @@
 <?php
 include_once "../usuario/es_creador.php";
+include_once "../observacion/tiene_observacion.php";
 include_once "../../lib/Login.php";
 $oLogin=new Login(); //Generamos el objeto Login
 //echo es_creador(127,$oLogin);
@@ -60,7 +61,7 @@ $oLogin=new Login(); //Generamos el objeto Login
           $etiquetas .=$etiqueta['nombre'].",";
         }
       }
-
+      
       if($elem['estado'] == 1){
         $mostrar .= "<tr>";
         $mostrar .= "<td>";
@@ -73,20 +74,6 @@ $oLogin=new Login(); //Generamos el objeto Login
         $mostrar .= $etiquetas."<br />";
         $mostrar .= "<strong>Creador: </strong>".$elem['nombre_usuario']."<br />";
         $mostrar .= "</td>";
-        if($oLogin->activa() && $oLogin->getRol() == 2 || $oLogin->getRol() == 3 || $oLogin->getRol() == 4 ){
-          $mostrar .= "<td style='font-size:12px;'>";
-          if(es_creador($elem['id_documento'],$oLogin) && $elem['estado'] != 1){
-            $mostrar .= "<a href='#' class='modificar' data-id='".$elem['id_documento']."'>Modificar</a> <br />";
-            $mostrar .= "<a href='#' class='eliminar' data-id='".$elem['id_documento']."' data-ruta='".$elem['ruta']."'>Eliminar</a><br /> ";
-            $mostrar .= "Ver observaciones <br />";
-          }
-
-          if($oLogin->activa() && $oLogin->getRol() == 3 && $elem['estado'] == 0){
-            $mostrar .= "<a class='actualizar_estado' data-id='".$elem['id_documento']."' href='#'>Validar</a> <br />";
-            $mostrar .= "<a class='crear_observacion' data-id='".$elem['id_documento']."' href='#'>No Validar</a> <br />";
-          }
-          $mostrar .= "</td>";
-        }
         $mostrar .= "</tr>";
       }else{
         if($oLogin->activa() && ($oLogin->getRol() == 2 || $oLogin->getRol() == 3 || $oLogin->getRol() == 4 )){
@@ -107,7 +94,12 @@ $oLogin=new Login(); //Generamos el objeto Login
             if(es_creador($elem['id_documento'],$oLogin) && $elem['estado'] != 1){
               $mostrar .= "<a href='#' class='modificar' data-id='".$elem['id_documento']."'>Modificar</a> <br />";
               $mostrar .= "<a href='#' class='eliminar' data-id='".$elem['id_documento']."' data-ruta='".$elem['ruta']."'>Eliminar</a><br /> ";
-              $mostrar .= "Ver observaciones <br />";
+
+              //$mostrar .="tiene_observacion = ".tiene_observacion($elem['id_documento']);
+              if(tiene_observacion($elem['id_documento']) == 1){
+                $mostrar .= "<a href='Biblioteca/observacion/ver_observaciones.php?id_documento=".$elem['id_documento']."'> Ver observaciones</a> <br />";
+              }
+
             }
             if($oLogin->activa() && $oLogin->getRol() == 3 && $elem['estado'] == 0){
               $mostrar .= "<a class='actualizar_estado' data-id='".$elem['id_documento']."' href='#'>Validar</a> <br />";
@@ -124,10 +116,7 @@ $oLogin=new Login(); //Generamos el objeto Login
     $mostrar .= "</table>";
 
     if($oLogin->activa()){
-      if($oLogin->getRol()==2 || $oLogin->getRol()==3 || $oLogin->getRol()==4){
         echo $mostrar;
-
-
         ?>
         <div class="modal fade"id="mod" tabindex="-1" role="dialog">
           <div class="modal-dialog" role="document">
@@ -187,7 +176,6 @@ $oLogin=new Login(); //Generamos el objeto Login
       </body>
       </html>
       <?php
-    }
 
   }
 }
