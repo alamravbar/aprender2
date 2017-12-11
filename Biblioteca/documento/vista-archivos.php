@@ -61,7 +61,7 @@ $oLogin=new Login(); //Generamos el objeto Login
           $etiquetas .=$etiqueta['nombre'].",";
         }
       }
-      
+
       if($elem['estado'] == 1){
         $mostrar .= "<tr>";
         $mostrar .= "<td>";
@@ -92,12 +92,13 @@ $oLogin=new Login(); //Generamos el objeto Login
             $mostrar .= "<td style='font-size:12px;'>";
             $mostrar .= "<br />";
             if(es_creador($elem['id_documento'],$oLogin) && $elem['estado'] != 1){
-              $mostrar .= "<a href='#' class='modificar' data-id='".$elem['id_documento']."'>Modificar</a> <br />";
-              $mostrar .= "<a href='#' class='eliminar' data-id='".$elem['id_documento']."' data-ruta='".$elem['ruta']."'>Eliminar</a><br /> ";
+              //$mostrar .= "<a href='#' class='modificar' data-id='".$elem['id_documento']."'>Modificar</a> <br />";
+              //$mostrar .= "<a href='#' class='eliminar' data-id='".$elem['id_documento']."' data-ruta='".$elem['ruta']."'>Eliminar</a><br /> ";
 
               //$mostrar .="tiene_observacion = ".tiene_observacion($elem['id_documento']);
               if(tiene_observacion($elem['id_documento']) == 1){
-                $mostrar .= "<a href='Biblioteca/observacion/ver_observaciones.php?id_documento=".$elem['id_documento']."'> Ver observaciones</a> <br />";
+                $mostrar .= "<a href='#' class='ver_obs' data-id='".$elem['id_documento']."'>Ver Observaciones</a><br /> ";
+                //$mostrar .= "<a class='ver_obs' href='Biblioteca/observacion/ver_observaciones.php?id_documento=".$elem['id_documento']."'> Ver observaciones</a> <br />";
               }
 
             }
@@ -129,16 +130,16 @@ $oLogin=new Login(); //Generamos el objeto Login
         </div>
 
         <script type="text/javascript">
-        $(".modificar").click(function(){
-          var id = $(this).data("id");
-          //alert("modificar "+id);
-          $.get("Biblioteca/documento/formulariomodificar.php",{id:id},
-          function(data){
-            //console.log(data);
-            $("#formmod").html(data);
-            $('#mod').modal('show');
-          });
-        });
+        // $(".modificar").click(function(){
+        //   var id = $(this).data("id");
+        //   //alert("modificar "+id);
+        //   $.get("Biblioteca/documento/formulariomodificar.php",{id:id},
+        //   function(data){
+        //     //console.log(data);
+        //     $("#formmod").html(data);
+        //     $('#mod').modal('show');
+        //   });
+        // });
         $(".eliminar").click(function(){
           var id = $(this).data("id");
           var ruta=$(this).data("ruta");
@@ -170,6 +171,15 @@ $oLogin=new Login(); //Generamos el objeto Login
 
         });
 
+        $(".ver_obs").click(function(){
+          var id = $(this).data("id");
+          $.get("Biblioteca/observacion/ver_observaciones.php",{id_documento:id},
+          function(data){
+            //console.log(data);
+            $("#observaciones").html(data);
+            $('#mostrar_observaciones').modal('show');
+          });
+        });
         </script>
 
 

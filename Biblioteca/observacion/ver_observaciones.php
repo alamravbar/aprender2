@@ -23,9 +23,9 @@ if($oLogin->activa() && $oLogin->getRol() == 2){
     }else{
       $datos = $respuesta->fetchAll(PDO::FETCH_ASSOC);
       foreach ($datos as $observacion) {
-        $mostrar .= "<h4>Observación N° ".$observacion['id']." Fecha de corrección: ".$observacion['fecha']." </h4>";
+        $mostrar .= "<h3>Observación N° ".$observacion['id']." Fecha de corrección: ".$observacion['fecha']." </h3>";
         $mostrar .= "<hr />";
-        $mostrar .= "Descripición: <br />".$observacion['descripcion']."<br> <strong>Corregido por <strong>".$observacion['nombre_usuario']."<br>";
+        $mostrar .= "Descripición:".$observacion['descripcion']."<br><strong>Corregido por </strong>".$observacion['nombre_usuario'];
       }
       ?>
       <!DOCTYPE html>
@@ -36,8 +36,24 @@ if($oLogin->activa() && $oLogin->getRol() == 2){
         </head>
         <body>
           <?php echo $mostrar; ?>
-          <button type="button" name="button">Mandar a Corregir</button>
-          <button type="button" name="button">Volver</button>
+          <br>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+          <button type="button" class="btn btn-warning modificar" data-id="<?php echo $id_documento; ?>">Modificar</button>
+          <button type="button" class="btn btn-success">Mandar a Validar</button>
+
+          <script type="text/javascript">
+            $(".modificar").click(function(){
+              var id = $(this).data("id");
+              //alert("modificar "+id);
+              $.get("Biblioteca/documento/formulariomodificar.php",{id:id},
+              function(data){
+                //console.log(data);
+                $("#formmod").html(data);
+                $('#mod').modal('show');
+              });
+            });
+          </script>
+
         </body>
       </html>
       <?php

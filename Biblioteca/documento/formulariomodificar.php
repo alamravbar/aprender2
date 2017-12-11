@@ -41,7 +41,7 @@ if($_GET){
   <head>
   </head>
   <body>
-    <form method="post" id="form_actualizar">
+    <form method="post" id="form_actualizar" enctype="multipart/form-data">
       <input type="hidden" name="id" id="id" value='"<?php echo $id;?>"'>
       <div class="row">
         <div class="col-md-2 col-sm-12">
@@ -54,18 +54,22 @@ if($_GET){
           </div>
         </div>
       </div>
+      <?php echo $eliminar ?>
+<!--
       <div class="row">
         <div class="col-md-6" style="padding-top:30px;">
-          <?php echo $eliminar ?>
+
         </div>
+
         <div class="col-md-6">
           <div class="form-group">
             <label for="imagen">Seleccione un archivo..</label>
-            <input type="file" class="form-control-file formulario btn btn-default" id="archivo" name="archivo" >
+            <input type="file" name="archivo" id="archivo"></input>
           </div>
         </div>
-      </div>
 
+      </div>
+      -->
       <div class="form-group">
         <label for="descripcion">Descripcion: </label>
         <textarea name="descripcion" id="descripcion" class="form-control" rows="10"><?php echo $descripcion;?></textarea><br>
@@ -86,10 +90,22 @@ if($_GET){
     </form>
     <script type="text/javascript">
     $("#actualizar_form").click(function(){
-      $.post("Biblioteca/modificar.php",$("#form_actualizar").serialize(),
+      $.post("Biblioteca/documento/modificar.php",$("#form_actualizar").serialize(),
       function(data){
         alert(data);
       });
+    });
+    $(".eliminar").click(function(){
+      var id = $(this).data("id");
+      var ruta=$(this).data("ruta");
+
+      var elim = confirm("¿Seguro quiere Eliminar?");
+      if (elim == true) {
+        $.post("Biblioteca/documento/eliminar.php",{id:id , ruta:ruta},
+        function(data){
+          alert(data);
+        });
+      }
     });
     </script>
   </body>

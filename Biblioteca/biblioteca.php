@@ -114,7 +114,25 @@ $oLogin=new Login();
   </div>
 </div>
 <!--- Fin Modal --->
+<!--- Modal Para las observaciones -->
+<div class="modal fade" id="mostrar_observaciones" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h4 class="modal-title">Ver Observaciones</h4>
+      </div>
+      <div class="modal-body">
+        <div id="observaciones">
 
+        </div>
+        <button type="button" class="close" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fin del Modal -->
 <div class="show_archive">
 
 </div>
@@ -220,6 +238,7 @@ $(".openBtn").on('click',function(){
       $("#bibliotec").removeClass("active");
       $("#inicio").removeClass("active");
     });});
+
 </script>
 
 </body>
