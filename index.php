@@ -13,6 +13,7 @@ $oLogin=new Login();
 
 </head>
 <body>
+  
   <header>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
@@ -32,7 +33,7 @@ $oLogin=new Login();
                 ?> <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="#">Cambiar Contraseña</a></li>
+                <li id="cambclave"><a href="#" id="cambioclave">Cambiar Contraseña</a></li>
                 <li><a href="cerrarLogin.php">Salir</a></li>
               </ul>
             </li>
@@ -58,6 +59,9 @@ $oLogin=new Login();
       </div>
     </nav>
   </header>
+
+
+  
 
   <div class="container contenedor">
     <div class=""id="vista">
@@ -125,6 +129,9 @@ $oLogin=new Login();
   </footer>
   <!--footer start from here-->
   <!-- Modal -->
+
+     
+      
   <div class="modal fade" id="modalLogin" role="dialog">
     <div class="modal-dialog">
 
@@ -165,6 +172,7 @@ $oLogin=new Login();
 
   <script type="text/javascript" src="js/jquery.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
+  
   <script type="text/javascript">
   $(document).ready(function() {
     $.get("Inicio/inicio.php", function(data){
@@ -173,7 +181,7 @@ $oLogin=new Login();
     $("#login").click(function(){
       $("#modalLogin").modal();
     });
-
+    
   });
 
   $("#biblioteca").click(function(){
@@ -253,7 +261,19 @@ $oLogin=new Login();
         $("#sumat").removeClass("active");
         $("#administracio").removeClass("active");
       });});
-
+    $("#cambioclave").click(function(){
+      $.get("formularioprueba.php", function(data){
+        $("#vista").html(data);
+      $("#cambclave").addClass("active");
+      $("#asignatur").removeClass("active");
+      $("#administacio").removeClass("active");
+      $("sugerencia").removeClass("active");
+      $("#plataform").removeClass("active");
+      $("#sumat").removeClass("active");
+      $("#inicio").removeClass("active");
+  
+    });
+  });
       </script>
       <?php if($oLogin->activa()){  ?>
       <script>

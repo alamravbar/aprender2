@@ -66,9 +66,9 @@ return $tuits;
 
 <div class="container">
 
-<div class='col-sm-4' ></div>
+<div class='<col-md-2></col-md-2>' ></div>
 
-<div class='col-sm-4 pre-scrollable'  >
+<div class='col-sm-8 pre-scrollable'  >
 <div class="panel panel-primary">
       <div class="panel-heading"><h5>twitter</h5></div>
       <div class="panel-body">
