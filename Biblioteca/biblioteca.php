@@ -188,6 +188,7 @@ $("#etiqueta_button").click(function(){
       $("#etiquetas").append("<input class='form-check-input formulario' type='checkbox' name='etiqueta[]' value="+data+" checked>"+nombre_eti+"</label>");
       if(contador == 6){
         $("#etiquetas").append("<br />");
+        $("#nombre_eti").val("");
       }
     }
   });
