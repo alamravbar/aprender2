@@ -1,5 +1,5 @@
 <?php
-include_once "../lib/PDOConfig.php";
+include_once "../../lib/PDOConfig.php";
 if($_GET){
   $id=$_GET['id'];
 
@@ -11,6 +11,8 @@ if($_GET){
     $nombre = $datosdocumento['nombre'];
     $descripcion = $datosdocumento['descripcion'];
     $ruta = $datosdocumento['ruta'];
+    $eliminar = "<a href='#' class='eliminar btn btn-default btn-block' data-id='".$id."' data-ruta='".$ruta."'>Eliminar</a><br /> ";
+    $img = "Biblioteca/imagen/".$datosdocumento['extension'].".jpg";
     $sql="select * from categoria";
     $resultado=$base->query($sql);
     $comboselect="";
@@ -39,14 +41,35 @@ if($_GET){
   <head>
   </head>
   <body>
-    <form method="post" id="form_actualizar">
-
+    <form method="post" id="form_actualizar" enctype="multipart/form-data">
       <input type="hidden" name="id" id="id" value='"<?php echo $id;?>"'>
-      <div class="form-group">
-        <label for="nombre">Nombre: </label>
-        <input type="text" id="nombre" name="nombre" class="form-control" value= '"<?php echo $nombre;?>"' disabled><br>
+      <div class="row">
+        <div class="col-md-2 col-sm-12">
+          <img src="<?php echo $img; ?>"  class='media-object' style='width:60px' alt="icono_extension">
+        </div>
+        <div class="col-md-10 col-sm-12">
+          <div class="form-group">
+            <label for="nombre">Nombre: </label>
+            <input type="text" id="nombre" name="nombre" class="form-control" value= '"<?php echo $nombre;?>"' disabled><br>
+          </div>
+        </div>
       </div>
+      <?php echo $eliminar ?>
+<!--
+      <div class="row">
+        <div class="col-md-6" style="padding-top:30px;">
 
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="imagen">Seleccione un archivo..</label>
+            <input type="file" name="archivo" id="archivo"></input>
+          </div>
+        </div>
+
+      </div>
+      -->
       <div class="form-group">
         <label for="descripcion">Descripcion: </label>
         <textarea name="descripcion" id="descripcion" class="form-control" rows="10"><?php echo $descripcion;?></textarea><br>
@@ -67,10 +90,22 @@ if($_GET){
     </form>
     <script type="text/javascript">
     $("#actualizar_form").click(function(){
-      $.post("Biblioteca/modificar.php",$("#form_actualizar").serialize(),
+      $.post("Biblioteca/documento/modificar.php",$("#form_actualizar").serialize(),
       function(data){
         alert(data);
       });
+    });
+    $(".eliminar").click(function(){
+      var id = $(this).data("id");
+      var ruta=$(this).data("ruta");
+
+      var elim = confirm("¿Seguro quiere Eliminar?");
+      if (elim == true) {
+        $.post("Biblioteca/documento/eliminar.php",{id:id , ruta:ruta},
+        function(data){
+          alert(data);
+        });
+      }
     });
     </script>
   </body>

@@ -14,24 +14,24 @@ $oLogin=new Login();
     
     <form name="form1" id="form1" method="get" action="cambiarClave.php" onSubmit="return validarCambioClave();">
     </br></br>
-    <input type="input" id="claveLogeo" value="<?php echo $oLogin->getPsw();?>">
+    <input type="hidden" id="claveLogeo" value="<?php echo $oLogin->getPsw();?>">
      <div class="col-md-10 mb-3">
       <label for="claveActual">Clave Actual</label>
-      <input type="password" class="form-control " id="claveActual" name="claveActual" placeholder="claveActual" value="clave" >
+      <input type="password" class="form-control " id="claveActual" name="claveActual" placeholder="ingrese clave actual" value="" >
     </div>
     <div class="col-md-10 mb-3">
       <label for="claveNueva">Clave Nueva</label>
-      <input type="password" class="form-control " id="claveNueva" name="claveNueva" placeholder="claveNueva" value="clave" >
+      <input type="password" class="form-control " id="claveNueva" name="claveNueva" placeholder="ingrese nueva clave" value="" >
     </div>
     <div class="col-md-10 mb-3">
       <label for="claveNueva1">Clave Nueva</label>
-      <input type="password" class="form-control " id="claveNueva1" name="claveNueva1" placeholder="claveNueva" value="clave" >
+      <input type="password" class="form-control " id="claveNueva1" name="claveNueva1" placeholder="repita nueva clave" value="" >
     </div>  
     <div class="col-md-10">
      <div class="col-md-10">
           </div>
           <div class="col-md-2 col-sm-12"></br>
-      <input type="submit" class="btn btn-primary" >
+      <input type="submit" class="btn btn-primary"  >
       </div>
     
     </form>
@@ -45,9 +45,8 @@ $oLogin=new Login();
     var claveNueva1=document.getElementById("claveNueva1").value;
     var Clave=document.getElementById("claveLogeo").value;
     
-    alert(claveActual);
-    alert(claveNueva);
-    alert(claveNueva1);
+    alert("Datos erroneos");
+   
     
     
     

@@ -1,5 +1,5 @@
 <?php
-include_once "../lib/PDOConfig.php";
+include_once "../../lib/PDOConfig.php";
 
 if($_POST){
   $id=$_POST['id'];
