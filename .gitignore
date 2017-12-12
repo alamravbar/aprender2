@@ -1,5 +1,4 @@
 # ignorar los siguientes directorios:
-lib/
 .metadata/
 Biblioteca/files/
 Plataforma/
