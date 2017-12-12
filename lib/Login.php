@@ -41,7 +41,7 @@ class Login {
      */
     public function iniciar($nombreUsuario, $Clave) {
         $_SESSION['aprender_nombre'] = $nombreUsuario;
-        $_SESSION['aprender_psw'] = ($Clave);
+        $_SESSION['aprender_psw'] =($Clave);
         $_SESSION['aprender_activa'] = false;
     }
 
@@ -58,6 +58,7 @@ class Login {
         }
         if (isset($_SESSION['aprender_psw'])) {
             $Clave = $_SESSION['aprender_psw'];
+
         } else {
             $this->ERROR = 'no esta seteada la clave';
             return false;
@@ -81,15 +82,14 @@ class Login {
                         $this->ERROR = 'Clave erronea';
                         return false;
                     } else {
-                        if($row['habilitado'] == 1){
-                          $_SESSION['aprender_activa'] = true;
-                          $_SESSION['aprender_id_rol'] = $row['id_rol'];
-                          return true;
+                        if($row['habilitado']==1){
+                        $_SESSION['aprender_activa'] = true;
+                        $_SESSION['aprender_id_rol'] = $row['id_rol'];
+                        return true;
                         }else{
-                          $this->ERROR = 'Usuario no habilitado';
-                          return false;
+                            $this->ERROR="Usuario no habilitado";
+                            return false;
                         }
-
                     }
                 }
             }
@@ -166,6 +166,19 @@ class Login {
                 return $_SESSION['aprender_id_rol'];
             } else {
                 $this->ERROR = 'No está seteado el Rol';
+                return false;
+            }
+        } else {
+            $this->ERROR = 'No tiene una sección activa';
+            return false;
+        }
+    }
+    public function getPsw() {
+        if ($this->activa()) {
+            if (isset($_SESSION['aprender_psw'])) {
+                return $_SESSION['aprender_psw'];
+            } else {
+                $this->ERROR = 'No está seteado el psw';
                 return false;
             }
         } else {

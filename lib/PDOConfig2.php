@@ -10,7 +10,7 @@ class PDOConfig extends PDO {
 
     public function __construct(){
         $this->engine = 'mysql';
-        $this->host = 'Localhost';
+        $this->host = 'localhost';
         $this->database = 'atutor';
         $this->user = 'root';
         $this->pass = '';

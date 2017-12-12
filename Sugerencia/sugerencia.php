@@ -51,33 +51,25 @@ class Twitter{
 ?>
 
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Sugerencias</title>
-</head>
-<body>
-  <div class="container">
-      <div class="col-md-12">
-        <?php
-        $twitterObject = new Twitter();
-        $twitterObject->getTweets();
-        ?>
-      </div>
-  </div>
+  <head>
+    <meta charset="utf-8">
+    <title>Sugerencias</title>
+  </head>
+  <body>
+          <div class="container">
+
+              <div id="" class="form-group text-center"  style='background-color:lavender;' data-pin-board-width="100" data-pin-scale-height="100">
+               <?php
+
+                   $twitterObject = new Twitter();
+                    $twitterObject->getTweets();
+
+               ?>
+              </div>
+          </div>
 
 
-  <script>
-  // function muestra_oculta(id){
-  //   if (document.getElementById){ //se obtiene el id
-  //     var el = document.getElementById(id); //se define la variable "el" igual a nuestro div
-  //     el.style.display = (el.style.display == 'none') ? 'block' : 'none'; //damos un atributo display:none que oculta el div
-  //   }
-  //   $('#contenido').load('vistatwits.php');
-  // }
-  // window.onload = function(){/*hace que se cargue la función lo que predetermina que div estará oculto hasta llamar a la función nuevamente*/
-  //   muestra_oculta('contenido_a_mostrar');/* "contenido_a_mostrar" es el nombre que le dimos al DIV */
-  // }
-  </script>
+    <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
 
-</body>
+  </body>
 </html>

@@ -1,4 +1,8 @@
 # ignorar los siguientes directorios:
+<<<<<<< HEAD
+=======
+
+>>>>>>> c91c33542b025151c19e41544842802aecbb4d49
 .metadata/
 Biblioteca/files/
 Plataforma/
