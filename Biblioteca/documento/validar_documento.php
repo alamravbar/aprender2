@@ -3,7 +3,7 @@
   include_once "../../lib/Login.php";
   $base = new PDOConfig();
   $oLogin=new Login(); //Generamos el objeto Login
-  if($oLogin->activa() && $oLogin->getRol() == 3){
+  if($oLogin->activa() && ($oLogin->getRol() == 3 || $oLogin->getRol() == 2)){
     if($_POST){
       $id = $_POST['id'];
       $estado = $_POST['estado'];

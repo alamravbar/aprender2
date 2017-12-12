@@ -5,7 +5,7 @@ include_once "../../lib/Login.php";
 include_once "../usuario/es_creador.php";
 $base = new PDOConfig();
 $oLogin=new Login(); //Generamos el objeto Login
-if($oLogin->activa() && $oLogin->getRol() == 2){
+if($oLogin->activa() && ($oLogin->getRol() == 2 || $oLogin->getRol() == 3)){
   if($_GET){
     /** Obtengo el id del documento y busco las observaciones de ese documento **/
     $base=new PDOConfig();
@@ -37,10 +37,13 @@ if($oLogin->activa() && $oLogin->getRol() == 2){
         <body>
           <?php echo $mostrar; ?>
           <br>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
-          <button type="button" class="btn btn-warning modificar" data-id="<?php echo $id_documento; ?>">Modificar</button>
-          <button type="button" class="btn btn-success">Mandar a Validar</button>
-
+          <?php
+            if($oLogin->getRol() == 2){
+           ?>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+            <button type="button" class="btn btn-warning modificar" data-id="<?php echo $id_documento; ?>">Modificar</button>
+            <button type="button" class="btn btn-success validar" data-id="<?php echo $id_documento?>">Mandar a Validar</button>
+          <?php } ?>
           <script type="text/javascript">
             $(".modificar").click(function(){
               var id = $(this).data("id");
@@ -50,6 +53,13 @@ if($oLogin->activa() && $oLogin->getRol() == 2){
                 //console.log(data);
                 $("#formmod").html(data);
                 $('#mod').modal('show');
+              });
+            });
+            $(".validar").click(function(){
+              var id_documento = $(this).data("id");
+              $.post("Biblioteca/documento/validar_documento.php",{id:id_documento,estado:0},
+              function(data){
+                alert(data);
               });
             });
           </script>

@@ -96,13 +96,14 @@ $oLogin=new Login(); //Generamos el objeto Login
               //$mostrar .= "<a href='#' class='eliminar' data-id='".$elem['id_documento']."' data-ruta='".$elem['ruta']."'>Eliminar</a><br /> ";
 
               //$mostrar .="tiene_observacion = ".tiene_observacion($elem['id_documento']);
-              if(tiene_observacion($elem['id_documento']) == 1){
+              if(tiene_observacion($elem['id_documento']) == 1 && $elem['estado'] == 2){
                 $mostrar .= "<a href='#' class='ver_obs' data-id='".$elem['id_documento']."'>Ver Observaciones</a><br /> ";
                 //$mostrar .= "<a class='ver_obs' href='Biblioteca/observacion/ver_observaciones.php?id_documento=".$elem['id_documento']."'> Ver observaciones</a> <br />";
               }
 
             }
             if($oLogin->activa() && $oLogin->getRol() == 3 && $elem['estado'] == 0){
+              $mostrar .= "<a href='#' class='ver_obs' data-id='".$elem['id_documento']."'>Ver Observaciones</a><br /> ";
               $mostrar .= "<a class='actualizar_estado' data-id='".$elem['id_documento']."' href='#'>Validar</a> <br />";
               $mostrar .= "<a class='crear_observacion' data-id='".$elem['id_documento']."' href='#'>No Validar</a> <br />";
             }
